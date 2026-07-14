@@ -24,8 +24,42 @@ Hosted on GitHub Pages. No backend.
 2. Write clean, typed, documented code
 3. Run lint/typecheck before presenting changes
 4. Explain what was done and why
+5. Keep README.md updated with new features and changes
+6. Only document features that are actually implemented
 
 ---
+
+## README Guidelines
+
+### Tone & Style
+- Use a friendly, engaging, and approachable tone
+- Write for developers of all skill levels
+- Be concise but informative
+- Use active voice
+
+### Structure
+- Start with a compelling project description
+- Include badges (build status, license, etc.) if applicable
+- Use clear section hierarchy (H2 for main sections, H3 for subsections)
+
+### Visual Elements
+- Use emoji icons next to section titles for visual appeal
+- Example: `## 🚀 How to Run`
+- Keep emoji usage consistent throughout
+
+### Required Sections
+1. **Project Description** - What the app does, why it exists
+2. **Tech Stack** - Technologies and tools used
+3. **Features** - Key functionality with brief descriptions
+4. **How to Run** - Setup instructions, prerequisites, available scripts
+5. **How to Use** - User guide for main features
+6. **Documentation** - Links to additional docs (markdown format, etc.)
+
+### Formatting
+- Use code blocks for commands and code examples
+- Use tables for structured data (scripts, tech stack)
+- Use bullet lists for features and steps
+- Keep line lengths reasonable for readability
 
 ## Frontend Rules
 
