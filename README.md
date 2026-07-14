@@ -1,32 +1,84 @@
-# React + TypeScript + Vite
+# 📚 Learn It
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A personal skill-learning tracker that helps you learn and share new skills through structured Learning Paths. Import Markdown files, track your progress, test your knowledge with quizzes, and share your learning paths with others!
 
-Currently, two official plugins are available:
+> 🚧 **Under Active Development** - This project is currently being built. Check back soon for updates!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
 
-## React Compiler
+| Technology | Purpose |
+|------------|---------|
+| React 19 | UI framework |
+| TypeScript | Type safety |
+| Vite | Build tool & dev server |
+| Tailwind CSS | Styling |
+| Zustand | State management |
+| React Router | Navigation |
+| LocalStorage | Data persistence |
+| GitHub Pages | Deployment |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🗺️ Roadmap
 
-## Expanding the Oxlint configuration
+### Phase 1: Core Features
+- [ ] Dashboard with Learning Path cards
+- [ ] Markdown parser for importing Learning Paths
+- [ ] Learning Path viewer with section navigation
+- [ ] Progress tracking with checkboxes
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Phase 2: Interactive Learning
+- [ ] True/False quiz component
+- [ ] Multiple choice quiz component
+- [ ] Quiz scoring and feedback
+- [ ] Skill acquisition status
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### Phase 3: Organization & Sharing
+- [ ] Tag-based filtering and search
+- [ ] Export Learning Paths to Markdown
+- [ ] Create new Learning Paths in-app
+- [ ] Import preview before saving
+
+### Phase 4: Polish & Optimization
+- [ ] Responsive design for mobile
+- [ ] Animations and transitions
+- [ ] Empty states and loading indicators
+- [ ] Performance optimizations
+
+## 🚀 How to Run
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/learn-it.git
+
+# Navigate to project directory
+cd learn-it
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run linter |
+
+## 📖 How to Use
+
+*Coming soon - features are currently under development!*
+
+## 📚 Documentation
+
+- [Markdown Format Specification](docs/markdown-format.md) - How to create Learning Paths
