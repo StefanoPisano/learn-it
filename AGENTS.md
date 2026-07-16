@@ -27,6 +27,7 @@ Hosted on GitHub Pages. No backend.
 5. Keep README.md updated with new features and changes
 6. Only document features that are actually implemented
 7. Keep docs/design/ specs updated when modifying colors/UI
+8. Keep docs/training/ updated when adding new components or concepts
 
 ---
 

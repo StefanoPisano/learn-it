@@ -1,8 +1,16 @@
+import { BrowserRouter, Routes, Route } from 'react-router'
+import { Layout } from './components/Layout'
+import { Dashboard } from './pages/Dashboard'
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <h1 className="text-3xl font-bold p-8">Learn Me</h1>
-    </div>
+    <BrowserRouter basename="/learn-it">
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
