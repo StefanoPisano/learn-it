@@ -121,3 +121,80 @@ function Sidebar() {
 ```
 
 Commonly used to highlight the active navigation link by comparing `location.pathname` with each link's `path`.
+
+---
+
+## Zustand
+
+Zustand is a lightweight state management library for React. It provides a simple way to create stores outside of the component tree.
+
+### Theme Store
+
+**File**: `src/store/themeStore.ts`
+
+```tsx
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      theme: 'light',
+      toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
+    }),
+    { name: 'learn-it-theme' },  // localStorage key
+  ),
+)
+```
+
+### How it works
+
+1. **Store creation** — `create()` defines state and actions
+2. **Persist middleware** — automatically saves to localStorage
+3. **`onRehydrateStorage`** — runs after localStorage is read, applies the theme to `<html>`
+4. **Component usage** — `useThemeStore()` returns the current state and actions
+
+### Why Zustand over Context?
+
+| Feature | Zustand | Context |
+|---------|---------|---------|
+| Boilerplate | Minimal | Provider + context |
+| Re-renders | Only subscribers | All consumers |
+| Persistence | Built-in middleware | Manual |
+| outside React | ✅ Yes | ❌ No |
+
+---
+
+## Dark Mode
+
+The dark mode system has three layers:
+
+### 1. CSS Variables (`index.css`)
+
+```css
+:root { --color-background: #F8FAFC; }     /* Light */
+.dark { --color-background: #0F172A; }     /* Dark */
+```
+
+### 2. Tailwind `dark:` prefix
+
+Used for component-specific overrides (e.g., difficulty badges):
+
+```html
+<span class="bg-green-100 dark:bg-green-900/30">...</span>
+```
+
+### 3. Theme Toggle + localStorage
+
+```
+User clicks toggle
+  → useThemeStore.toggleTheme()
+    → adds/removes "dark" class on <html>
+      → CSS variables switch
+        → all components update automatically
+
+On page load:
+  → index.html script reads localStorage
+    → applies "dark" class before React loads
+      → no flash of wrong theme (FOUC)
+```

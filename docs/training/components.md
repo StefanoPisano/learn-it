@@ -34,6 +34,21 @@ Main container that wraps the entire application. Provides a persistent sidebar 
 
 None — it's a route layout component that uses `<Outlet />` to render child routes.
 
+### Layout Structure
+
+```
+┌─────────────┬──────────────────────────┐
+│             │  Header                  │
+│  Sidebar    │  (hamburger + title +   │
+│  (240px)    │   ThemeToggle)           │
+│             ├──────────────────────────┤
+│             │                          │
+│             │  <Outlet />              │
+│             │  (page content)          │
+│             │                          │
+└─────────────┴──────────────────────────┘
+```
+
 ---
 
 ## Sidebar
@@ -84,6 +99,25 @@ Card component that displays a learning path summary with title, difficulty badg
 | **Header** | Title + difficulty badge |
 | **Body** | Description + tags |
 | **Footer** | Author + progress bar |
+
+---
+
+## ThemeToggle
+
+**File**: `src/components/ThemeToggle.tsx`
+
+Button that toggles between light and dark mode. Displays a moon icon in light mode and a sun icon in dark mode. Uses the Zustand theme store to persist the preference.
+
+### Behavior
+
+- Click toggles theme
+- Preference saved to localStorage
+- Applied immediately to `<html>` element via CSS class `dark`
+- On page load, theme is restored from localStorage (or falls back to system preference)
+
+### Props
+
+None — reads and writes state via `useThemeStore`.
 
 ---
 
