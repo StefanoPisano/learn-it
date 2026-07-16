@@ -82,4 +82,4 @@ npm run dev
 ## 📚 Documentation
 
 - [Markdown Format Specification](docs/markdown-format.md) - How to create Learning Paths
-- [Color Palette](docs/design/palette.md) - Color system and usage rules
+- [Design System](docs/design/style.md) - Colors, typography, spacing, and style rules
