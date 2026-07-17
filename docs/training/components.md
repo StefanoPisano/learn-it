@@ -141,13 +141,43 @@ Displayed when a list has no items to show (e.g., no search results).
 
 Home page that displays a grid of `LearningPathCard` components with a search bar and an import button.
 
-### Current State
+### Data Source
 
-Uses **mock data** (6 hardcoded learning paths). Includes a search bar that filters by title, description, and tags. Shows `EmptyState` when no results match.
+Uses `useLearningPathStore` to read learning paths from the shared Zustand store.
 
 ### Layout
 
 - Title + description
 - "Import Path" button (top-right)
 - Search input (filters cards in real-time)
+- Responsive card grid (1 → 2 → 3 columns)
+
+---
+
+## LearningPaths
+
+**File**: `src/pages/LearningPaths.tsx`
+
+Full list view with advanced filtering and sorting capabilities.
+
+### Data Source
+
+Uses `useLearningPathStore` to read learning paths from the shared Zustand store.
+
+### Features
+
+| Feature | Description |
+|---------|-------------|
+| **Search** | Filter by title, description, and tags |
+| **Difficulty filter** | Filter by beginner/intermediate/advanced |
+| **Tag filter** | Filter by specific tags (auto-generated from data) |
+| **Sorting** | Sort by title, progress, or difficulty |
+| **Clear filters** | Reset all active filters at once |
+
+### Layout
+
+- Title + path count
+- "Import Path" button (top-right)
+- Search bar + sort dropdown (side by side on desktop)
+- Filter chips (difficulty + tags + clear button)
 - Responsive card grid (1 → 2 → 3 columns)

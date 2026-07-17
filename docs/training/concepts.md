@@ -126,33 +126,68 @@ Commonly used to highlight the active navigation link by comparing `location.pat
 
 ## Zustand
 
-Zustand is a lightweight state management library for React. It provides a simple way to create stores outside of the component tree.
+Zustand is a lightweight state management library for React. It creates stores outside of the component tree.
 
-### Theme Store
-
-**File**: `src/store/themeStore.ts`
+### How `create()` works
 
 ```tsx
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
-export const useThemeStore = create<ThemeState>()(
-  persist(
-    (set) => ({
-      theme: 'light',
-      toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
-    }),
-    { name: 'learn-it-theme' },  // localStorage key
-  ),
+const useStore = create((set) => ({
+  count: 0,                          // Data → becomes state
+  increment: () => set((s) => ({ count: s.count + 1 })),  // Function → ALSO state
+}))
+```
+
+`create()` calls your function **once** at startup. Everything you return becomes the store's state — data and functions alike. Functions are saved but **not called** until a component invokes them.
+
+### How `set()` works
+
+`set()` is the only way to update the state. What you return from `set()` **is** the new state (merged with the previous one).
+
+```tsx
+// ✅ Correct: return the new state
+set((state) => ({ paths: [...state.paths, newPath] }))
+
+// ❌ Wrong: returning nothing → state unchanged
+set(() => { console.log('hello') })
+
+// ❌ Wrong: returning wrong type → state becomes that type
+set(() => ({ paths: "hello" }))  // paths is now a string
+```
+
+Key rules:
+- `set()` **overwrites** — it does not concatenate or merge arrays automatically
+- You must spread existing state if you want to keep it: `[...state.paths, newItem]`
+- If you don't call `set()`, the state doesn't change and components don't re-render
+
+### Persist middleware
+
+```tsx
+persist(
+  (set) => ({ ... }),
+  { name: 'learn-it-paths' }  // ← localStorage key
 )
 ```
 
-### How it works
+- `name` is the key used in `localStorage.setItem(name, ...)`
+- On startup, Zustand reads from localStorage and **overrides** the initial state
+- On every state change, Zustand saves to localStorage automatically
 
-1. **Store creation** — `create()` defines state and actions
-2. **Persist middleware** — automatically saves to localStorage
-3. **`onRehydrateStorage`** — runs after localStorage is read, applies the theme to `<html>`
-4. **Component usage** — `useThemeStore()` returns the current state and actions
+### Selectors in components
+
+```tsx
+// Read data
+const paths = useLearningPathStore((state) => state.paths)
+
+// Read a function
+const addPath = useLearningPathStore((state) => state.addPath)
+
+// Call the function
+addPath({ title: 'New', description: '...', ... })
+```
+
+The selector `(state) => state.paths` tells Zustand which part of the state this component needs. The component only re-renders when that specific value changes.
 
 ### Why Zustand over Context?
 
@@ -162,6 +197,69 @@ export const useThemeStore = create<ThemeState>()(
 | Re-renders | Only subscribers | All consumers |
 | Persistence | Built-in middleware | Manual |
 | outside React | ✅ Yes | ❌ No |
+
+---
+
+### Theme Store
+
+**File**: `src/store/themeStore.ts`
+
+```tsx
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      theme: 'light',
+      toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
+    }),
+    { name: 'learn-it-theme' },
+  ),
+)
+```
+
+How it works:
+1. `toggleTheme` returns `{ theme: 'dark' }` → Zustand overwrites `theme`
+2. `persist` saves to localStorage under `'learn-it-theme'`
+3. On next page load, Zustand reads localStorage → theme is restored
+4. `onRehydrateStorage` applies the CSS class `dark` to `<html>` before React mounts
+
+---
+
+### Learning Path Store
+
+**File**: `src/store/learningPathStore.ts`
+
+Stores all learning paths with CRUD operations. Used by both Dashboard and LearningPaths pages.
+
+```tsx
+export const useLearningPathStore = create<LearningPathState>()(
+  persist(
+    (set) => ({
+      paths: mockLearningPaths,
+
+      addPath: (path) => set((state) => ({
+        paths: [...state.paths, { ...path, id: nextId }],
+      })),
+
+      removePath: (id) => set((state) => ({
+        paths: state.paths.filter((p) => p.id !== id),
+      })),
+
+      updatePath: (id, updates) => set((state) => ({
+        paths: state.paths.map((p) => p.id === id ? { ...p, ...updates } : p),
+      })),
+    }),
+    { name: 'learn-it-paths' },
+  ),
+)
+```
+
+How each action works:
+
+| Action | What `set()` returns | Effect |
+|--------|---------------------|--------|
+| `addPath(path)` | `{ paths: [...state.paths, newPath] }` | Appends to array |
+| `removePath(id)` | `{ paths: state.paths.filter(...) }` | Removes from array |
+| `updatePath(id, updates)` | `{ paths: state.paths.map(...) }` | Updates one item |
 
 ---
 

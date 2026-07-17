@@ -2,78 +2,23 @@ import { useState, useMemo } from 'react'
 import { Search, Plus } from 'lucide-react'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
-
-const mockLearningPaths = [
-  {
-    id: 1,
-    title: 'React Hooks Deep Dive',
-    description: 'Master useState, useEffect, useContext and custom hooks with practical examples.',
-    difficulty: 'intermediate' as const,
-    tags: ['react', 'hooks', 'frontend'],
-    progress: 65,
-    author: 'John Doe',
-  },
-  {
-    id: 2,
-    title: 'TypeScript Fundamentals',
-    description: 'Learn TypeScript from scratch - types, interfaces, generics and best practices.',
-    difficulty: 'beginner' as const,
-    tags: ['typescript', 'javascript'],
-    progress: 100,
-    author: 'Jane Smith',
-  },
-  {
-    id: 3,
-    title: 'Advanced CSS Patterns',
-    description: 'Explore modern CSS techniques: grid, flexbox, custom properties and animations.',
-    difficulty: 'advanced' as const,
-    tags: ['css', 'frontend', 'design'],
-    progress: 30,
-    author: 'Mike Johnson',
-  },
-  {
-    id: 4,
-    title: 'Node.js API Design',
-    description: 'Build RESTful APIs with Node.js, Express and best practices for production.',
-    difficulty: 'intermediate' as const,
-    tags: ['nodejs', 'backend', 'api'],
-    progress: 0,
-    author: 'Sarah Wilson',
-  },
-  {
-    id: 5,
-    title: 'Git Workflow Mastery',
-    description: 'Learn Git branching strategies, rebasing, and collaboration workflows.',
-    difficulty: 'beginner' as const,
-    tags: ['git', 'devops'],
-    progress: 85,
-    author: 'Alex Chen',
-  },
-  {
-    id: 6,
-    title: 'Database Design Principles',
-    description: 'Understand relational database design, normalization and query optimization.',
-    difficulty: 'advanced' as const,
-    tags: ['database', 'sql', 'backend'],
-    progress: 15,
-    author: 'Emily Brown',
-  },
-]
+import { useLearningPathStore } from '../store/learningPathStore'
 
 export function Dashboard() {
+  const paths = useLearningPathStore((state) => state.paths)
   const [search, setSearch] = useState('')
 
   const filteredPaths = useMemo(() => {
-    if (!search.trim() || search.length < 3) return mockLearningPaths
+    if (!search.trim()) return paths
 
     const query = search.toLowerCase()
-    return mockLearningPaths.filter(
+    return paths.filter(
       (path) =>
         path.title.toLowerCase().includes(query) ||
         path.description.toLowerCase().includes(query) ||
         path.tags.some((tag) => tag.toLowerCase().includes(query)),
     )
-  }, [search])
+  }, [search, paths])
 
   return (
     <div className="max-w-7xl mx-auto">
