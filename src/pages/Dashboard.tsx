@@ -1,5 +1,7 @@
+import { useState, useMemo } from 'react'
 import { Search, Plus } from 'lucide-react'
 import { LearningPathCard } from '../components/LearningPathCard'
+import { EmptyState } from '../components/EmptyState'
 
 const mockLearningPaths = [
   {
@@ -59,6 +61,20 @@ const mockLearningPaths = [
 ]
 
 export function Dashboard() {
+  const [search, setSearch] = useState('')
+
+  const filteredPaths = useMemo(() => {
+    if (!search.trim() || search.length < 3) return mockLearningPaths
+
+    const query = search.toLowerCase()
+    return mockLearningPaths.filter(
+      (path) =>
+        path.title.toLowerCase().includes(query) ||
+        path.description.toLowerCase().includes(query) ||
+        path.tags.some((tag) => tag.toLowerCase().includes(query)),
+    )
+  }, [search])
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
@@ -82,15 +98,21 @@ export function Dashboard() {
         <input
           type="text"
           placeholder="Search learning paths..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:border-[var(--color-primary)] transition-colors"
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {mockLearningPaths.map((path) => (
-          <LearningPathCard key={path.id} {...path} />
-        ))}
-      </div>
+      {filteredPaths.length === 0 ? (
+        <EmptyState message="No learning paths match your search" />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {filteredPaths.map((path) => (
+            <LearningPathCard key={path.id} {...path} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

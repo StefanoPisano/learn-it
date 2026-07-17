@@ -121,6 +121,20 @@ None — reads and writes state via `useThemeStore`.
 
 ---
 
+## EmptyState
+
+**File**: `src/components/EmptyState.tsx`
+
+Displayed when a list has no items to show (e.g., no search results).
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `message` | `string` | Message to display |
+
+---
+
 ## Dashboard
 
 **File**: `src/pages/Dashboard.tsx`
@@ -129,11 +143,11 @@ Home page that displays a grid of `LearningPathCard` components with a search ba
 
 ### Current State
 
-Uses **mock data** (6 hardcoded learning paths). No real state management yet.
+Uses **mock data** (6 hardcoded learning paths). Includes a search bar that filters by title, description, and tags. Shows `EmptyState` when no results match.
 
 ### Layout
 
 - Title + description
 - "Import Path" button (top-right)
-- Search input
+- Search input (filters cards in real-time)
 - Responsive card grid (1 → 2 → 3 columns)

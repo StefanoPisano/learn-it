@@ -198,3 +198,34 @@ On page load:
     → applies "dark" class before React loads
       → no flash of wrong theme (FOUC)
 ```
+
+---
+
+## useMemo
+
+A React hook that memoizes a computed value. It only recalculates when its dependencies change.
+
+```tsx
+const filteredPaths = useMemo(() => {
+  if (!search.trim()) return mockLearningPaths
+
+  const query = search.toLowerCase()
+  return mockLearningPaths.filter(
+    (path) =>
+      path.title.toLowerCase().includes(query) ||
+      path.description.toLowerCase().includes(query) ||
+      path.tags.some((tag) => tag.toLowerCase().includes(query)),
+  )
+}, [search])  // ← Only recalculates when search changes
+```
+
+### When to use it
+
+- **Expensive calculations** — filtering, sorting, aggregating large lists
+- **Avoiding unnecessary re-renders** — passing stable references to child components
+
+### When NOT to use it
+
+- Simple derivations (e.g., `const double = count * 2`)
+- Values that change every render anyway
+- Premature optimization — React is already fast for most cases
