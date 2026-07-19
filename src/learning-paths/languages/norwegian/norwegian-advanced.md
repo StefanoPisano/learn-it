@@ -7,7 +7,7 @@ tags:
   - grammar
 difficulty: advanced
 author: Learn It Team
-language: no
+language: en
 date: 2026-07-19
 version: 1.0.0
 ---

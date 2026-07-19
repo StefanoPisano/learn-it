@@ -102,18 +102,14 @@ export const useLearningPathStore = create<LearningPathState>()(
           for (const bp of builtinPaths) {
             const key = `${bp.slug}::${bp.data.version ?? '1.0.0'}`
             const existing = existingBySlugVersion.get(key)
-            if (existing) {
-              newPaths.push(existing)
-            } else {
-              newPaths.push({
-                ...bp.data,
-                id: id++,
-                slug: bp.slug,
-                source: 'builtin',
-                progress: 0,
-                followed: false,
-              })
-            }
+            newPaths.push({
+              ...bp.data,
+              id: existing?.id ?? id++,
+              slug: bp.slug,
+              source: 'builtin',
+              progress: existing?.progress ?? 0,
+              followed: existing?.followed ?? false,
+            })
           }
 
           const importedPaths = state.paths.filter((p) => p.source === 'imported')
