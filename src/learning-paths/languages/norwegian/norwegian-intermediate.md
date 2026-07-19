@@ -4,7 +4,6 @@ description: Build confidence in daily Norwegian — ordering food, asking direc
 tags:
   - norwegian
   - language
-  - intermediate
 difficulty: intermediate
 author: Learn It Team
 language: en

@@ -1,4 +1,4 @@
-import { Home, BookOpen, Tag, Settings, X } from 'lucide-react'
+import { Home, BookOpen, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { LanguageToggle } from './LanguageToggle'
@@ -14,9 +14,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const navItems = [
     { icon: Home, label: t('nav.dashboard'), path: '/' },
-    { icon: BookOpen, label: t('nav.learningPaths'), path: '/paths' },
-    { icon: Tag, label: t('nav.tags'), path: '/tags' },
-    { icon: Settings, label: t('nav.settings'), path: '/settings' },
+    { icon: BookOpen, label: t('nav.learningPaths'), path: '/paths' }
   ]
 
   return (

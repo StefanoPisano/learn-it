@@ -35,7 +35,6 @@ export function LearningPaths() {
 
   const filteredPaths = useMemo(() => {
     let result = paths
-
     if (search.trim()) {
       const query = search.toLowerCase()
       result = result.filter(

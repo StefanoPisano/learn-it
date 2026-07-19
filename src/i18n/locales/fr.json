@@ -1,9 +1,7 @@
 {
   "nav": {
     "dashboard": "Mes cours",
-    "learningPaths": "Parcours",
-    "tags": "Tags",
-    "settings": "Paramètres"
+    "learningPaths": "Parcours"
   },
   "dashboard": {
     "title": "Mes cours",

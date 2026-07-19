@@ -4,7 +4,6 @@ description: Learn the fundamentals of Norwegian — greetings, numbers, and bas
 tags:
   - norwegian
   - language
-  - beginner
 difficulty: beginner
 author: Learn It Team
 language: en

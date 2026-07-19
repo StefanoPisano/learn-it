@@ -1,9 +1,7 @@
 {
   "nav": {
     "dashboard": "Mina kurser",
-    "learningPaths": "Lärstigar",
-    "tags": "Taggar",
-    "settings": "Inställningar"
+    "learningPaths": "Lärstigar"
   },
   "dashboard": {
     "title": "Mina kurser",
