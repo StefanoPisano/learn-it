@@ -18,32 +18,6 @@ A personal skill-learning tracker that helps you learn and share new skills thro
 | localStorage | Data persistence |
 | GitHub Pages | Deployment |
 
-## 🗺️ Roadmap
-
-### Phase 1: Core Features
-- [x] Dashboard with Learning Path cards
-- [x] Markdown parser for importing Learning Paths
-- [x] Learning Path viewer with section navigation
-- [x] Progress tracking with checkboxes
-
-### Phase 2: Interactive Learning
-- [x] True/False quiz component
-- [x] Multiple choice quiz component
-- [x] Quiz scoring and feedback
-- [ ] Skill acquisition status
-
-### Phase 3: Organization & Sharing
-- [x] Tag-based filtering and search
-- [ ] Export Learning Paths to Markdown
-- [ ] Create new Learning Paths in-app
-- [x] Import preview before saving
-
-### Phase 4: Polish & Optimization
-- [ ] Responsive design for mobile
-- [ ] Animations and transitions
-- [ ] Empty states and loading indicators
-- [x] Internationalization (EN/IT)
-
 ## 🚀 How to Run
 
 ### Prerequisites
