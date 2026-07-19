@@ -47,6 +47,61 @@ export function LearningPathCard({
   const isBuiltin = source === 'builtin'
   const canDelete = !isBuiltin && onDelete
 
+  if (!followed) {
+    return (
+      <div className="block bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] opacity-60 overflow-hidden">
+        <div className="p-4">
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <h3 className="font-semibold text-[var(--color-text)] line-clamp-1">
+              {title}
+              {version && <span className="ml-1 text-xs font-normal text-[var(--color-text-secondary)]">v{version}</span>}
+            </h3>
+            <div className="flex items-center gap-2 shrink-0">
+              {isBuiltin && (
+                <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                  {t('dashboard.builtIn')}
+                </span>
+              )}
+              <span className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${difficultyColors[difficulty]}`}>
+                {difficulty}
+              </span>
+            </div>
+          </div>
+
+          <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 mb-3">
+            {description}
+          </p>
+
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-0.5 rounded-full bg-[var(--color-background)] text-[var(--color-text-secondary)]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="px-4 py-3 border-t border-[var(--color-border)] bg-[var(--color-background)]/50">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-[var(--color-text-secondary)]">
+              {author} · <span title={getLanguageName(language)}>{getLanguageDisplay(language)}</span>
+            </span>
+            <button
+              onClick={() => onFollow?.(id)}
+              className="flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-colors"
+            >
+              <Plus className="w-3 h-3" />
+              {t('dashboard.follow')}
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <Link
       to={`/paths/${id}`}

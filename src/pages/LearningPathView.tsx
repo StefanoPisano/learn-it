@@ -1,5 +1,5 @@
-import { useState, useCallback, useRef, useMemo } from 'react'
-import { useParams, Link } from 'react-router'
+import { useState, useCallback, useRef, useMemo, useEffect } from 'react'
+import { useParams, Link, useNavigate } from 'react-router'
 import { ChevronLeft, ChevronRight, ArrowLeft, RotateCcw, CheckCheck, List } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useLearningPathStore } from '../store/learningPathStore'
@@ -22,9 +22,14 @@ function getInitialCompleted(progress: number, total: number): Set<number> {
 
 export function LearningPathView() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const path = useLearningPathStore((state) => state.paths.find((p) => p.id === Number(id)))
   const updatePath = useLearningPathStore((state) => state.updatePath)
+
+  useEffect(() => {
+    if (path && !path.followed) navigate('/paths', { replace: true })
+  }, [path, navigate])
 
   const sections = useMemo(() => path?.sections ?? [], [path?.sections])
   const totalSections = sections.length
@@ -93,7 +98,7 @@ export function LearningPathView() {
     updatePath(path.id, { progress })
   }
 
-  if (!path) {
+  if (!path || !path.followed) {
     return (
       <div className="max-w-3xl mx-auto text-center py-16">
         <p className="text-[var(--color-text-secondary)] mb-4">Learning path not found.</p>

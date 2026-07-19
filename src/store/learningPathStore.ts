@@ -86,7 +86,7 @@ export const useLearningPathStore = create<LearningPathState>()(
 
       unfollowPath: (id) =>
         set((state) => ({
-          paths: state.paths.map((p) => (p.id === id ? { ...p, followed: false } : p)),
+          paths: state.paths.map((p) => (p.id === id ? { ...p, followed: false, progress: 0 } : p)),
         })),
 
       loadBuiltIn: (builtinPaths) =>
