@@ -91,6 +91,14 @@ npm run dev
 
 Toggle between English and Italian using the language button in the sidebar. Your preference is saved automatically.
 
+## 🤖 AI Usage
+
+This project was developed with the assistance of [opencode](https://opencode.ai), an AI coding tool.
+It was created as part of a personal learning journey to explore and understand AI-assisted software development.
+
+All code, architecture decisions, and implementation were guided through AI conversation,
+while design choices, feature priorities, and final review were made by the human developer.
+
 ## 📚 Documentation
 
 - [Markdown Format Specification](docs/markdown-format.md) - How to create Learning Paths
