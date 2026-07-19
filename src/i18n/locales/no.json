@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "dashboard": "Kontrollpanel",
+    "learningPaths": "Læringsstier",
+    "tags": "Tagger",
+    "settings": "Innstillinger"
+  },
+  "dashboard": {
+    "title": "Kontrollpanel",
+    "subtitle": "Din læringsprogresjon i et øyeblikk",
+    "importPath": "Importer",
+    "searchPlaceholder": "Søk læringsstier...",
+    "emptyState": "Ingen læringsstier samsvarer med søket ditt",
+    "deleteConfirm": "Er du sikker på at du vil slette \"{{title}}\"?",
+    "deleteSuccess": "Læringsstig slettet"
+  },
+  "learningPaths": {
+    "title": "Læringsstier",
+    "subtitle": "{{count}} stier tilgjengelig",
+    "importPath": "Importer",
+    "searchPlaceholder": "Søk læringsstier...",
+    "sortBy": "Sorter etter {{label}}",
+    "clearFilters": "Tøm filtre",
+    "emptyState": "Ingen læringsstier samsvarer med filtrene dine",
+    "difficulty": {
+      "beginner": "Nybegynner",
+      "intermediate": "Middels",
+      "advanced": "Avansert"
+    },
+    "sort": {
+      "title": "Tittel",
+      "progress": "Fremgang",
+      "difficulty": "Vanskelighetsgrad"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Bytt til {{mode}}-modus"
+  },
+  "import": {
+    "title": "Importer læringsstig",
+    "dragDrop": "Dra og slipp en .md-fil her, eller klikk for å bla",
+    "browse": "Bla gjennom filer",
+    "maxSize": "Maksimal filstørrelse: 50 KB",
+    "invalidFormat": "Kun .md-filer aksepteres",
+    "fileTooLarge": "Filen overskrider grensen på 50 KB. Prøv å dele læringsstien i to separate filer.",
+    "parsing": "Analyserer fil...",
+    "preview": "Forhåndsvisning",
+    "confirmImport": "Importer",
+    "cancel": "Avbryt",
+    "success": "Læringsstig importert",
+    "error": "Feil ved import av fil",
+    "fields": {
+      "title": "Tittel",
+      "description": "Beskrivelse",
+      "difficulty": "Vanskelighetsgrad",
+      "tags": "Tagger",
+      "author": "Forfatter",
+      "language": "Språk"
+    }
+  },
+  "parser": {
+    "titleRequired": "Feltet \"title\" kreves i globale metadata",
+    "descriptionRequired": "Feltet \"description\" kreves i globale metadata",
+    "tagsRequired": "Feltet \"tags\" kreves og må inneholde minst én tagg",
+    "difficultyRequired": "Feltet \"difficulty\" kreves i globale metadata",
+    "difficultyInvalid": "\"difficulty\" må være \"beginner\", \"intermediate\" eller \"advanced\". Mottatt: \"{{difficulty}}\"",
+    "authorRequired": "Feltet \"author\" kreves i globale metadata",
+    "languageRequired": "Feltet \"language\" kreves i globale metadata",
+    "typeRequired": "Feltet \"type\" kreves i seksjonsmetadata",
+    "typeInvalid": "\"type\" må være \"concept\", \"exercise\", \"quiz\" eller \"reference\". Mottatt: \"{{type}}\"",
+    "variantRequired": "Quiz-seksjoner må ha feltet \"variant\" (\"single\" eller \"multiple\")",
+    "variantInvalid": "\"variant\" må være \"single\" eller \"multiple\". Mottatt: \"{{variant}}\"",
+    "questionNoOptions": "Spørsmålet \"{{question}}\" har ingen alternativer",
+    "questionNoCorrect": "Spørsmålet \"{{question}}\" har ikke noe riktig svar markert med [x]",
+    "fileInvalid": "Filen må inneholde minst én global metadatablokk og én seksjon",
+    "quizNoQuestions": "Quiz-seksjoner må inneholde minst ett spørsmål"
+  },
+  "viewer": {
+    "backToPaths": "Tilbake til stier",
+    "sectionProgress": "Seksjon {{current}} av {{total}}",
+    "previous": "Forrige",
+    "next": "Neste",
+    "completed": "Fullført",
+    "checkAnswers": "Sjekk svar",
+    "retry": "Prøv igjen",
+    "correct": "riktig",
+    "markComplete": "Fullfør",
+    "reset": "Tilbakestill fremgang",
+    "resetConfirm": "Er du sikker på at du vil tilbakestille all fremgang for denne læringsstien?",
+    "completeAll": "Fullfør alle",
+    "sections": "Seksjoner",
+    "sectionType": {
+      "concept": "Konsept",
+      "exercise": "Øvelse",
+      "quiz": "Quiz",
+      "reference": "Referanser"
+    }
+  }
+}

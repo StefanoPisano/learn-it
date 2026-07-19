@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "learningPaths": "Parcours",
+    "tags": "Tags",
+    "settings": "Paramètres"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Votre progression d'apprentissage en un coup d'œil",
+    "importPath": "Importer",
+    "searchPlaceholder": "Rechercher des parcours...",
+    "emptyState": "Aucun parcours ne correspond à votre recherche",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer « {{title}} » ?",
+    "deleteSuccess": "Parcours supprimé"
+  },
+  "learningPaths": {
+    "title": "Parcours",
+    "subtitle": "{{count}} parcours disponibles",
+    "importPath": "Importer",
+    "searchPlaceholder": "Rechercher des parcours...",
+    "sortBy": "Trier par {{label}}",
+    "clearFilters": "Effacer les filtres",
+    "emptyState": "Aucun parcours ne correspond à vos filtres",
+    "difficulty": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé"
+    },
+    "sort": {
+      "title": "Titre",
+      "progress": "Progression",
+      "difficulty": "Difficulté"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Passer en mode {{mode}}"
+  },
+  "import": {
+    "title": "Importer un parcours",
+    "dragDrop": "Glissez-déposez un fichier .md ici, ou cliquez pour parcourir",
+    "browse": "Parcourir les fichiers",
+    "maxSize": "Taille maximale du fichier : 50 Ko",
+    "invalidFormat": "Seuls les fichiers .md sont acceptés",
+    "fileTooLarge": "Le fichier dépasse la limite de 50 Ko. Essayez de diviser le parcours en deux fichiers séparés.",
+    "parsing": "Analyse du fichier...",
+    "preview": "Aperçu",
+    "confirmImport": "Importer",
+    "cancel": "Annuler",
+    "success": "Parcours importé avec succès",
+    "error": "Erreur lors de l'importation du fichier",
+    "fields": {
+      "title": "Titre",
+      "description": "Description",
+      "difficulty": "Difficulté",
+      "tags": "Tags",
+      "author": "Auteur",
+      "language": "Langue"
+    }
+  },
+  "parser": {
+    "titleRequired": "Le champ « title » est requis dans les métadonnées globales",
+    "descriptionRequired": "Le champ « description » est requis dans les métadonnées globales",
+    "tagsRequired": "Le champ « tags » est requis et doit contenir au moins un tag",
+    "difficultyRequired": "Le champ « difficulty » est requis dans les métadonnées globales",
+    "difficultyInvalid": "« difficulty » doit être « beginner », « intermediate » ou « advanced ». Reçu : « {{difficulty}} »",
+    "authorRequired": "Le champ « author » est requis dans les métadonnées globales",
+    "languageRequired": "Le champ « language » est requis dans les métadonnées globales",
+    "typeRequired": "Le champ « type » est requis dans les métadonnées de section",
+    "typeInvalid": "« type » doit être « concept », « exercise », « quiz » ou « reference ». Reçu : « {{type}} »",
+    "variantRequired": "Les sections quiz doivent avoir le champ « variant » (« single » ou « multiple »)",
+    "variantInvalid": "« variant » doit être « single » ou « multiple ». Reçu : « {{variant}} »",
+    "questionNoOptions": "La question « {{question}} » n'a pas d'options",
+    "questionNoCorrect": "La question « {{question}} » n'a pas de réponse correcte marquée avec [x]",
+    "fileInvalid": "Le fichier doit contenir au moins un bloc de métadonnées globales et une section",
+    "quizNoQuestions": "Les sections quiz doivent contenir au moins une question"
+  },
+  "viewer": {
+    "backToPaths": "Retour aux parcours",
+    "sectionProgress": "Section {{current}} sur {{total}}",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "completed": "Terminé",
+    "checkAnswers": "Vérifier les réponses",
+    "retry": "Réessayer",
+    "correct": "correct",
+    "markComplete": "Terminer",
+    "reset": "Réinitialiser la progression",
+    "resetConfirm": "Êtes-vous sûr de vouloir réinitialiser toute la progression de ce parcours ?",
+    "completeAll": "Tout terminer",
+    "sections": "Sections",
+    "sectionType": {
+      "concept": "Concept",
+      "exercise": "Exercice",
+      "quiz": "Quiz",
+      "reference": "Références"
+    }
+  }
+}

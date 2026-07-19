@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "learningPaths": "Lernpfade",
+    "tags": "Tags",
+    "settings": "Einstellungen"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Dein Lernfortschritt auf einen Blick",
+    "importPath": "Importieren",
+    "searchPlaceholder": "Lernpfade suchen...",
+    "emptyState": "Keine Lernpfade gefunden",
+    "deleteConfirm": "Möchtest du \"{{title}}\" wirklich löschen?",
+    "deleteSuccess": "Lernpfad gelöscht"
+  },
+  "learningPaths": {
+    "title": "Lernpfade",
+    "subtitle": "{{count}} Pfade verfügbar",
+    "importPath": "Importieren",
+    "searchPlaceholder": "Lernpfade suchen...",
+    "sortBy": "Sortieren nach {{label}}",
+    "clearFilters": "Filter löschen",
+    "emptyState": "Keine Lernpfade entsprechen deinen Filtern",
+    "difficulty": {
+      "beginner": "Anfänger",
+      "intermediate": "Mittel",
+      "advanced": "Fortgeschritten"
+    },
+    "sort": {
+      "title": "Titel",
+      "progress": "Fortschritt",
+      "difficulty": "Schwierigkeit"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Zum {{mode}}-Modus wechseln"
+  },
+  "import": {
+    "title": "Lernpfad importieren",
+    "dragDrop": "Ziehe eine .md-Datei hierher oder klicke zum Durchsuchen",
+    "browse": "Dateien durchsuchen",
+    "maxSize": "Maximale Dateigröße: 50 KB",
+    "invalidFormat": "Nur .md-Dateien werden akzeptiert",
+    "fileTooLarge": "Die Datei überschreitet das Limit von 50 KB. Versuche den Lernpfad in zwei separate Dateien aufzuteilen.",
+    "parsing": "Datei wird analysiert...",
+    "preview": "Vorschau",
+    "confirmImport": "Importieren",
+    "cancel": "Abbrechen",
+    "success": "Lernpfad erfolgreich importiert",
+    "error": "Fehler beim Importieren der Datei",
+    "fields": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "difficulty": "Schwierigkeit",
+      "tags": "Tags",
+      "author": "Autor",
+      "language": "Sprache"
+    }
+  },
+  "parser": {
+    "titleRequired": "Das Feld \"title\" ist in den globalen Metadaten erforderlich",
+    "descriptionRequired": "Das Feld \"description\" ist in den globalen Metadaten erforderlich",
+    "tagsRequired": "Das Feld \"tags\" ist erforderlich und muss mindestens einen Tag enthalten",
+    "difficultyRequired": "Das Feld \"difficulty\" ist in den globalen Metadaten erforderlich",
+    "difficultyInvalid": "\"difficulty\" muss \"beginner\", \"intermediate\" oder \"advanced\" sein. Erhalten: \"{{difficulty}}\"",
+    "authorRequired": "Das Feld \"author\" ist in den globalen Metadaten erforderlich",
+    "languageRequired": "Das Feld \"language\" ist in den globalen Metadaten erforderlich",
+    "typeRequired": "Das Feld \"type\" ist in den Abschnitts-Metadaten erforderlich",
+    "typeInvalid": "\"type\" muss \"concept\", \"exercise\", \"quiz\" oder \"reference\" sein. Erhalten: \"{{type}}\"",
+    "variantRequired": "Quiz-Abschnitte müssen das Feld \"variant\" haben (\"single\" oder \"multiple\")",
+    "variantInvalid": "\"variant\" muss \"single\" oder \"multiple\" sein. Erhalten: \"{{variant}}\"",
+    "questionNoOptions": "Die Frage \"{{question}}\" hat keine Optionen",
+    "questionNoCorrect": "Die Frage \"{{question}}\" hat keine richtige Antwort mit [x] markiert",
+    "fileInvalid": "Die Datei muss mindestens einen globalen Metadaten-Block und einen Abschnitt enthalten",
+    "quizNoQuestions": "Quiz-Abschnitte müssen mindestens eine Frage enthalten"
+  },
+  "viewer": {
+    "backToPaths": "Zurück zu Pfaden",
+    "sectionProgress": "Abschnitt {{current}} von {{total}}",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "completed": "Abgeschlossen",
+    "checkAnswers": "Antworten prüfen",
+    "retry": "Erneut versuchen",
+    "correct": "richtig",
+    "markComplete": "Abschließen",
+    "reset": "Fortschritt zurücksetzen",
+    "resetConfirm": "Möchtest du wirklich den gesamten Fortschritt für diesen Lernpfad zurücksetzen?",
+    "completeAll": "Alle abschließen",
+    "sections": "Abschnitte",
+    "sectionType": {
+      "concept": "Konzept",
+      "exercise": "Übung",
+      "quiz": "Quiz",
+      "reference": "Referenzen"
+    }
+  }
+}

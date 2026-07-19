@@ -2,11 +2,19 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import i18n from '../i18n'
 
-type Language = 'en' | 'it'
+export type Language = 'en' | 'it' | 'fr' | 'sv' | 'no' | 'de'
+
+export const languageLabels: Record<Language, string> = {
+  en: 'EN',
+  it: 'IT',
+  fr: 'FR',
+  sv: 'SV',
+  no: 'NO',
+  de: 'DE',
+}
 
 interface LanguageState {
   language: Language
-  toggleLanguage: () => void
   setLanguage: (lang: Language) => void
 }
 
@@ -18,12 +26,6 @@ export const useLanguageStore = create<LanguageState>()(
   persist(
     (set) => ({
       language: 'en',
-      toggleLanguage: () =>
-        set((state) => {
-          const next = state.language === 'en' ? 'it' : 'en'
-          applyLanguage(next)
-          return { language: next }
-        }),
       setLanguage: (lang) => {
         applyLanguage(lang)
         set({ language: lang })

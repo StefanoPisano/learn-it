@@ -71,7 +71,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[var(--color-border)]">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[var(--color-border)] flex justify-center">
           <LanguageToggle />
         </div>
       </aside>

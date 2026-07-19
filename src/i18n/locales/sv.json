@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "dashboard": "Instrumentpanel",
+    "learningPaths": "Lärstigar",
+    "tags": "Taggar",
+    "settings": "Inställningar"
+  },
+  "dashboard": {
+    "title": "Instrumentpanel",
+    "subtitle": "Din inlärningsprogress i överblick",
+    "importPath": "Importera",
+    "searchPlaceholder": "Sök lärstigar...",
+    "emptyState": "Inga lärstigar matchar din sökning",
+    "deleteConfirm": "Är du säker på att du vill ta bort \"{{title}}\"?",
+    "deleteSuccess": "Lärstig borttagen"
+  },
+  "learningPaths": {
+    "title": "Lärstigar",
+    "subtitle": "{{count}} stigar tillgängliga",
+    "importPath": "Importera",
+    "searchPlaceholder": "Sök lärstigar...",
+    "sortBy": "Sortera efter {{label}}",
+    "clearFilters": "Rensa filter",
+    "emptyState": "Inga lärstigar matchar dina filter",
+    "difficulty": {
+      "beginner": "Nybörjare",
+      "intermediate": "Medel",
+      "advanced": "Avancerad"
+    },
+    "sort": {
+      "title": "Titel",
+      "progress": "Framsteg",
+      "difficulty": "Svårighetsgrad"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Byt till {{mode}}-läge"
+  },
+  "import": {
+    "title": "Importera lärstig",
+    "dragDrop": "Dra och släpp en .md-fil här, eller klicka för att bläddra",
+    "browse": "Bläddra filer",
+    "maxSize": "Maximal filstorlek: 50 KB",
+    "invalidFormat": "Endast .md-filer accepteras",
+    "fileTooLarge": "Filen överstiger gränsen på 50 KB. Försök dela lärstigen i två separata filer.",
+    "parsing": "Analyserar fil...",
+    "preview": "Förhandsgranskning",
+    "confirmImport": "Importera",
+    "cancel": "Avbryt",
+    "success": "Lärstig importerad",
+    "error": "Fel vid import av fil",
+    "fields": {
+      "title": "Titel",
+      "description": "Beskrivning",
+      "difficulty": "Svårighetsgrad",
+      "tags": "Taggar",
+      "author": "Författare",
+      "language": "Språk"
+    }
+  },
+  "parser": {
+    "titleRequired": "Fältet \"title\" krävs i globala metadata",
+    "descriptionRequired": "Fältet \"description\" krävs i globala metadata",
+    "tagsRequired": "Fältet \"tags\" krävs och måste innehålla minst en tagg",
+    "difficultyRequired": "Fältet \"difficulty\" krävs i globala metadata",
+    "difficultyInvalid": "\"difficulty\" måste vara \"beginner\", \"intermediate\" eller \"advanced\". Mottaget: \"{{difficulty}}\"",
+    "authorRequired": "Fältet \"author\" krävs i globala metadata",
+    "languageRequired": "Fältet \"language\" krävs i globala metadata",
+    "typeRequired": "Fältet \"type\" krävs i sektionsmetadata",
+    "typeInvalid": "\"type\" måste vara \"concept\", \"exercise\", \"quiz\" eller \"reference\". Mottaget: \"{{type}}\"",
+    "variantRequired": "Quiz-sektioner måste ha fältet \"variant\" (\"single\" eller \"multiple\")",
+    "variantInvalid": "\"variant\" måste vara \"single\" eller \"multiple\". Mottaget: \"{{variant}}\"",
+    "questionNoOptions": "Frågan \"{{question}}\" har inga alternativ",
+    "questionNoCorrect": "Frågan \"{{question}}\" har inget korrekt svar markerat med [x]",
+    "fileInvalid": "Filen måste innehålla minst ett globalt metadatablock och en sektion",
+    "quizNoQuestions": "Quiz-sektioner måste innehålla minst en fråga"
+  },
+  "viewer": {
+    "backToPaths": "Tillbaka till stigar",
+    "sectionProgress": "Sektion {{current}} av {{total}}",
+    "previous": "Föregående",
+    "next": "Nästa",
+    "completed": "Klar",
+    "checkAnswers": "Kontrollera svar",
+    "retry": "Försök igen",
+    "correct": "korrekt",
+    "markComplete": "Klar",
+    "reset": "Återställ framsteg",
+    "resetConfirm": "Är du säker på att du vill återställa all framsteg för denna lärstig?",
+    "completeAll": "Markera alla klara",
+    "sections": "Sektioner",
+    "sectionType": {
+      "concept": "Koncept",
+      "exercise": "Övning",
+      "quiz": "Quiz",
+      "reference": "Referenser"
+    }
+  }
+}
