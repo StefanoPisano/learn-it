@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "learningPaths": "Learning Paths",
+    "tags": "Tags",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Your learning progress at a glance",
+    "importPath": "Import",
+    "searchPlaceholder": "Search learning paths...",
+    "emptyState": "No learning paths match your search"
+  },
+  "learningPaths": {
+    "title": "Learning Paths",
+    "subtitle": "{{count}} paths available",
+    "importPath": "Import",
+    "searchPlaceholder": "Search learning paths...",
+    "sortBy": "Sort by {{label}}",
+    "clearFilters": "Clear filters",
+    "emptyState": "No learning paths match your filters",
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "sort": {
+      "title": "Title",
+      "progress": "Progress",
+      "difficulty": "Difficulty"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Switch to {{mode}} mode"
+  },
+  "parser": {
+    "titleRequired": "\"title\" is required in global metadata",
+    "tagsRequired": "\"tags\" is required and must contain at least one tag",
+    "difficultyRequired": "\"difficulty\" is required in global metadata",
+    "difficultyInvalid": "\"difficulty\" must be \"beginner\", \"intermediate\" or \"advanced\". Received: \"{{difficulty}}\"",
+    "authorRequired": "\"author\" is required in global metadata",
+    "languageRequired": "\"language\" is required in global metadata",
+    "typeRequired": "\"type\" is required in section metadata",
+    "typeInvalid": "\"type\" must be \"concept\", \"exercise\", \"quiz\" or \"reference\". Received: \"{{type}}\"",
+    "variantRequired": "Quiz sections must have the \"variant\" field (\"single\" or \"multiple\")",
+    "variantInvalid": "\"variant\" must be \"single\" or \"multiple\". Received: \"{{variant}}\"",
+    "questionNoOptions": "Question \"{{question}}\" has no options",
+    "questionNoCorrect": "Question \"{{question}}\" has no correct answer marked with [x]",
+    "fileInvalid": "File must contain at least one global metadata block and one section",
+    "quizNoQuestions": "Quiz sections must contain at least one question"
+  }
+}

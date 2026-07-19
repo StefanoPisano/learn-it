@@ -1,20 +1,23 @@
 import { Home, BookOpen, Tag, Settings, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { LanguageToggle } from './LanguageToggle'
 
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
 }
 
-const navItems = [
-  { icon: Home, label: 'Dashboard', path: '/' },
-  { icon: BookOpen, label: 'Learning Paths', path: '/paths' },
-  { icon: Tag, label: 'Tags', path: '/tags' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
-]
-
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const location = useLocation()
+  const { t } = useTranslation()
+
+  const navItems = [
+    { icon: Home, label: t('nav.dashboard'), path: '/' },
+    { icon: BookOpen, label: t('nav.learningPaths'), path: '/paths' },
+    { icon: Tag, label: t('nav.tags'), path: '/tags' },
+    { icon: Settings, label: t('nav.settings'), path: '/settings' },
+  ]
 
   return (
     <>
@@ -67,6 +70,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             )
           })}
         </nav>
+
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[var(--color-border)]">
+          <LanguageToggle />
+        </div>
       </aside>
     </>
   )

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Search, Plus, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
 import { useLearningPathStore } from '../store/learningPathStore'
@@ -7,24 +8,25 @@ import { useLearningPathStore } from '../store/learningPathStore'
 type Difficulty = 'beginner' | 'intermediate' | 'advanced'
 type SortBy = 'title' | 'progress' | 'difficulty'
 
-const difficulties: { value: Difficulty; label: string }[] = [
-  { value: 'beginner', label: 'Beginner' },
-  { value: 'intermediate', label: 'Intermediate' },
-  { value: 'advanced', label: 'Advanced' },
-]
-
-const sortOptions: { value: SortBy; label: string }[] = [
-  { value: 'title', label: 'Title' },
-  { value: 'progress', label: 'Progress' },
-  { value: 'difficulty', label: 'Difficulty' },
-]
-
 export function LearningPaths() {
+  const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
   const [search, setSearch] = useState('')
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState<SortBy>('title')
+
+  const difficulties: { value: Difficulty; label: string }[] = [
+    { value: 'beginner', label: t('learningPaths.difficulty.beginner') },
+    { value: 'intermediate', label: t('learningPaths.difficulty.intermediate') },
+    { value: 'advanced', label: t('learningPaths.difficulty.advanced') },
+  ]
+
+  const sortOptions: { value: SortBy; label: string }[] = [
+    { value: 'title', label: t('learningPaths.sort.title') },
+    { value: 'progress', label: t('learningPaths.sort.progress') },
+    { value: 'difficulty', label: t('learningPaths.sort.difficulty') },
+  ]
 
   const allTags = useMemo(() => {
     const tags = new Set<string>()
@@ -73,16 +75,16 @@ export function LearningPaths() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-[var(--color-text)]">
-            Learning Paths
+            {t('learningPaths.title')}
           </h2>
           <p className="text-[var(--color-text-secondary)]">
-            {paths.length} paths available
+            {t('learningPaths.subtitle', { count: paths.length })}
           </p>
         </div>
 
         <button className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors">
           <Plus className="w-5 h-5" />
-          Import Path
+          {t('learningPaths.importPath')}
         </button>
       </div>
 
@@ -91,7 +93,7 @@ export function LearningPaths() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-text-secondary)]" />
           <input
             type="text"
-            placeholder="Search learning paths..."
+            placeholder={t('learningPaths.searchPlaceholder')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:border-[var(--color-primary)] transition-colors"
@@ -105,7 +107,7 @@ export function LearningPaths() {
         >
           {sortOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>
-              Sort by {opt.label}
+              {t('learningPaths.sortBy', { label: opt.label })}
             </option>
           ))}
         </select>
@@ -151,13 +153,13 @@ export function LearningPaths() {
             className="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 transition-colors"
           >
             <X className="w-3.5 h-3.5" />
-            Clear filters
+            {t('learningPaths.clearFilters')}
           </button>
         )}
       </div>
 
       {filteredPaths.length === 0 ? (
-        <EmptyState message="No learning paths match your filters" />
+        <EmptyState message={t('learningPaths.emptyState')} />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredPaths.map((path) => (

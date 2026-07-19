@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "learningPaths": "Percorsi",
+    "tags": "Tag",
+    "settings": "Impostazioni"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Il tuo progresso di apprendimento in sintesi",
+    "importPath": "Importa",
+    "searchPlaceholder": "Cerca percorsi di apprendimento...",
+    "emptyState": "Nessun percorso corrisponde alla tua ricerca"
+  },
+  "learningPaths": {
+    "title": "Percorsi",
+    "subtitle": "{{count}} percorsi disponibili",
+    "importPath": "Importa",
+    "searchPlaceholder": "Cerca percorsi di apprendimento...",
+    "sortBy": "Ordina per {{label}}",
+    "clearFilters": "Cancella filtri",
+    "emptyState": "Nessun percorso corrisponde ai tuoi filtri",
+    "difficulty": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzato"
+    },
+    "sort": {
+      "title": "Titolo",
+      "progress": "Progresso",
+      "difficulty": "Difficoltà"
+    }
+  },
+  "theme": {
+    "toggleLabel": "Passa alla modalità {{mode}}"
+  },
+  "parser": {
+    "titleRequired": "Il campo \"title\" è obbligatorio nei metadati globali",
+    "tagsRequired": "Il campo \"tags\" è obbligatorio e deve contenere almeno un tag",
+    "difficultyRequired": "Il campo \"difficulty\" è obbligatorio nei metadati globali",
+    "difficultyInvalid": "\"difficulty\" deve essere \"beginner\", \"intermediate\" o \"advanced\". Ricevuto: \"{{difficulty}}\"",
+    "authorRequired": "Il campo \"author\" è obbligatorio nei metadati globali",
+    "languageRequired": "Il campo \"language\" è obbligatorio nei metadati globali",
+    "typeRequired": "Il campo \"type\" è obbligatorio nei metadati di sezione",
+    "typeInvalid": "\"type\" deve essere \"concept\", \"exercise\", \"quiz\" o \"reference\". Ricevuto: \"{{type}}\"",
+    "variantRequired": "Le sezioni \"quiz\" devono avere il campo \"variant\" (\"single\" o \"multiple\")",
+    "variantInvalid": "\"variant\" deve essere \"single\" o \"multiple\". Ricevuto: \"{{variant}}\"",
+    "questionNoOptions": "La domanda \"{{question}}\" non ha opzioni",
+    "questionNoCorrect": "La domanda \"{{question}}\" non ha una risposta corretta contrassegnata con [x]",
+    "fileInvalid": "Il file deve contenere almeno un blocco di metadati globali e una sezione",
+    "quizNoQuestions": "Le sezioni quiz devono contenere almeno una domanda"
+  }
+}
