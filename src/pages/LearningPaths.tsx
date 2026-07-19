@@ -13,17 +13,13 @@ export function LearningPaths() {
   const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
   const removePath = useLearningPathStore((state) => state.removePath)
+  const followPath = useLearningPathStore((state) => state.followPath)
+  const unfollowPath = useLearningPathStore((state) => state.unfollowPath)
   const [search, setSearch] = useState('')
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState<SortBy>('title')
   const [isImportOpen, setIsImportOpen] = useState(false)
-
-  const difficulties: { value: Difficulty; label: string }[] = [
-    { value: 'beginner', label: t('learningPaths.difficulty.beginner') },
-    { value: 'intermediate', label: t('learningPaths.difficulty.intermediate') },
-    { value: 'advanced', label: t('learningPaths.difficulty.advanced') },
-  ]
 
   const sortOptions: { value: SortBy; label: string }[] = [
     { value: 'title', label: t('learningPaths.sort.title') },
@@ -33,7 +29,7 @@ export function LearningPaths() {
 
   const allTags = useMemo(() => {
     const tags = new Set<string>()
-    paths.forEach((path) => path.tags.forEach((tag) => tags.add(tag)))
+    paths.forEach((path) => path.tags.forEach((tag) => tags.add(tag.toLowerCase())))
     return Array.from(tags).sort()
   }, [paths])
 
@@ -55,7 +51,7 @@ export function LearningPaths() {
     }
 
     if (selectedTag) {
-      result = result.filter((path) => path.tags.includes(selectedTag))
+      result = result.filter((path) => path.tags.some((tag) => tag.toLowerCase() === selectedTag))
     }
 
     result = [...result].sort((a, b) => {
@@ -127,22 +123,6 @@ export function LearningPaths() {
       </div>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        {difficulties.map((diff) => (
-          <button
-            key={diff.value}
-            onClick={() =>
-              setSelectedDifficulty(selectedDifficulty === diff.value ? null : diff.value)
-            }
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              selectedDifficulty === diff.value
-                ? 'bg-[var(--color-primary)] text-white'
-                : 'bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
-            }`}
-          >
-            {diff.label}
-          </button>
-        ))}
-
         {allTags.map((tag) => (
           <button
             key={tag}
@@ -176,7 +156,13 @@ export function LearningPaths() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredPaths.map((path) => (
-            <LearningPathCard key={path.id} {...path} onDelete={handleDelete} />
+            <LearningPathCard
+              key={path.id}
+              {...path}
+              onDelete={path.source === 'imported' ? handleDelete : undefined}
+              onFollow={followPath}
+              onUnfollow={unfollowPath}
+            />
           ))}
         </div>
       )}

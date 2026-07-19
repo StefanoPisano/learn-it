@@ -8,9 +8,14 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Il tuo progresso di apprendimento in sintesi",
-    "importPath": "Importa",
-    "searchPlaceholder": "Cerca percorsi di apprendimento...",
-    "emptyState": "Nessun percorso corrisponde alla tua ricerca",
+    "searchPlaceholder": "Cerca corsi seguiti...",
+    "emptyState": "Nessun corrisponde alla tua ricerca",
+    "emptyStateFollowed": "Nessun corso seguito. Esplora i percorsi disponibili e clicca \"Segui\".",
+    "browsePaths": "Sfoglia percorsi",
+    "follow": "Segui",
+    "following": "Seguito",
+    "unfollowConfirm": "Smettere di seguire \"{{title}}\"?",
+    "builtIn": "Piattaforma",
     "deleteConfirm": "Sei sicuro di voler eliminare \"{{title}}\"?",
     "deleteSuccess": "Percorso eliminato"
   },

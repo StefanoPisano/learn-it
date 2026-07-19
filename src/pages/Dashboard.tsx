@@ -1,34 +1,34 @@
 import { useState, useMemo } from 'react'
-import { Search, Plus } from 'lucide-react'
+import { Search } from 'lucide-react'
+import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
-import { ImportModal } from '../components/ImportModal'
 import { useLearningPathStore } from '../store/learningPathStore'
 
 export function Dashboard() {
   const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
-  const removePath = useLearningPathStore((state) => state.removePath)
+  const unfollowPath = useLearningPathStore((state) => state.unfollowPath)
   const [search, setSearch] = useState('')
-  const [isImportOpen, setIsImportOpen] = useState(false)
+
+  const followedPaths = useMemo(() => paths.filter((p) => p.followed), [paths])
 
   const filteredPaths = useMemo(() => {
-    if (!search.trim()) return paths
-
+    if (!search.trim()) return followedPaths
     const query = search.toLowerCase()
-    return paths.filter(
+    return followedPaths.filter(
       (path) =>
         path.title.toLowerCase().includes(query) ||
         path.description.toLowerCase().includes(query) ||
         path.tags.some((tag) => tag.toLowerCase().includes(query)),
     )
-  }, [search, paths])
+  }, [search, followedPaths])
 
-  const handleDelete = (id: number) => {
+  const handleUnfollow = (id: number) => {
     const path = paths.find((p) => p.id === id)
-    if (path && window.confirm(t('dashboard.deleteConfirm', { title: path.title }))) {
-      removePath(id)
+    if (path && window.confirm(t('dashboard.unfollowConfirm', { title: path.title }))) {
+      unfollowPath(id)
     }
   }
 
@@ -44,13 +44,12 @@ export function Dashboard() {
           </p>
         </div>
 
-        <button
-          onClick={() => setIsImportOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors"
+        <Link
+          to="/paths"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-lg hover:bg-[var(--color-primary)]/20 transition-colors"
         >
-          <Plus className="w-5 h-5" />
-          {t('dashboard.importPath')}
-        </button>
+          {t('dashboard.browsePaths')}
+        </Link>
       </div>
 
       <div className="relative mb-6">
@@ -65,16 +64,18 @@ export function Dashboard() {
       </div>
 
       {filteredPaths.length === 0 ? (
-        <EmptyState message={t('dashboard.emptyState')} />
+        <EmptyState message={followedPaths.length === 0 ? t('dashboard.emptyStateFollowed') : t('dashboard.emptyState')} />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredPaths.map((path) => (
-            <LearningPathCard key={path.id} {...path} onDelete={handleDelete} />
+            <LearningPathCard
+              key={path.id}
+              {...path}
+              onUnfollow={handleUnfollow}
+            />
           ))}
         </div>
       )}
-
-      <ImportModal isOpen={isImportOpen} onClose={() => setIsImportOpen(false)} />
     </div>
   )
 }

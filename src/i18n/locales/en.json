@@ -8,9 +8,14 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Your learning progress at a glance",
-    "importPath": "Import",
-    "searchPlaceholder": "Search learning paths...",
-    "emptyState": "No learning paths match your search",
+    "searchPlaceholder": "Search followed courses...",
+    "emptyState": "No courses match your search",
+    "emptyStateFollowed": "No courses followed yet. Browse available courses and click \"Follow\".",
+    "browsePaths": "Browse courses",
+    "follow": "Follow",
+    "following": "Following",
+    "unfollowConfirm": "Stop following \"{{title}}\"?",
+    "builtIn": "Platform",
     "deleteConfirm": "Are you sure you want to delete \"{{title}}\"?",
     "deleteSuccess": "Learning path deleted"
   },

@@ -1,17 +1,24 @@
 import { Link } from 'react-router'
-import { Trash2 } from 'lucide-react'
+import { Trash2, Plus, Check } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
 
 interface LearningPathCardProps {
   id: number
+  slug: string
+  source: 'builtin' | 'imported'
   title: string
   description: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
   tags: string[]
   progress: number
+  followed: boolean
   author: string
   language: string
+  version?: string
   onDelete?: (id: number) => void
+  onFollow?: (id: number) => void
+  onUnfollow?: (id: number) => void
 }
 
 const difficultyColors = {
@@ -22,15 +29,24 @@ const difficultyColors = {
 
 export function LearningPathCard({
   id,
+  source,
   title,
   description,
   difficulty,
   tags,
   progress,
+  followed,
   author,
   language,
+  version,
   onDelete,
+  onFollow,
+  onUnfollow,
 }: LearningPathCardProps) {
+  const { t } = useTranslation()
+  const isBuiltin = source === 'builtin'
+  const canDelete = !isBuiltin && onDelete
+
   return (
     <Link
       to={`/paths/${id}`}
@@ -40,26 +56,17 @@ export function LearningPathCard({
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-semibold text-[var(--color-text)] line-clamp-1">
             {title}
+            {version && <span className="ml-1 text-xs font-normal text-[var(--color-text-secondary)]">v{version}</span>}
           </h3>
-          <div className="flex items-center gap-2">
-            <span
-              className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${difficultyColors[difficulty]}`}
-            >
+          <div className="flex items-center gap-2 shrink-0">
+            {isBuiltin && (
+              <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                {t('dashboard.builtIn')}
+              </span>
+            )}
+            <span className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${difficultyColors[difficulty]}`}>
               {difficulty}
             </span>
-            {onDelete && (
-              <button
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  onDelete(id)
-                }}
-                className="p-1 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-[var(--color-text-secondary)] hover:text-red-500 transition-colors"
-                aria-label="Delete"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            )}
           </div>
         </div>
 
@@ -88,11 +95,41 @@ export function LearningPathCard({
             {progress}%
           </span>
         </div>
-        <div className="h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[var(--color-secondary)] rounded-full transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
+        <div className="flex items-center justify-between">
+          <div className="h-1.5 flex-1 bg-[var(--color-border)] rounded-full overflow-hidden mr-3">
+            <div
+              className="h-full bg-[var(--color-secondary)] rounded-full transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="flex items-center gap-1.5">
+            {followed ? (
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); onUnfollow?.(id) }}
+                className="flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors"
+              >
+                <Check className="w-3 h-3" />
+                {t('dashboard.following')}
+              </button>
+            ) : (
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); onFollow?.(id) }}
+                className="flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-colors"
+              >
+                <Plus className="w-3 h-3" />
+                {t('dashboard.follow')}
+              </button>
+            )}
+            {canDelete && (
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); onDelete(id) }}
+                className="p-1 rounded-md hover:bg-red-100 dark:hover:bg-red-900/30 text-[var(--color-text-secondary)] hover:text-red-500 transition-colors"
+                aria-label="Delete"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </Link>
