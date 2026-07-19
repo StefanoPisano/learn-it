@@ -121,6 +121,6 @@
     "a8": "All data is stored locally in your browser's localStorage. Nothing is sent to any server. Your courses and progress persist across sessions until you clear your browser data.",
     "q9": "Where can I find an example Learning Path?",
     "a9": "You can download a sample .md file to use as a template for creating your own Learning Paths:",
-    "footer": "For any issues or feature requests, please open an issue on"
+    "footer": "For any issues, feature requests, or to propose new courses to add, please open an issue on"
   }
 }

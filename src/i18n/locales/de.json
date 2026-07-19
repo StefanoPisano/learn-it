@@ -116,6 +116,6 @@
     "a8": "Alle Daten werden lokal im localStorage deines Browsers gespeichert. Nichts wird an einen Server gesendet. Deine Kurse und dein Fortschritt bleiben zwischen den Sitzungen erhalten, bis du die Browserdaten löschst.",
     "q9": "Wo finde ich ein Beispiel für einen Lernpfad?",
     "a9": "Du kannst eine .md-Datei als Vorlage herunterladen, um deine eigenen Lernpfade zu erstellen:",
-    "footer": "Für Fehlermeldungen oder Funktionsanfragen bitte ein Issue eröffnen auf"
+    "footer": "Für Fehlermeldungen, Funktionsanfragen oder um neue Kurse zum Hinzufügen vorzuschlagen, bitte ein Issue eröffnen auf"
   }
 }

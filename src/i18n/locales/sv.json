@@ -116,6 +116,6 @@
     "a8": "Alla uppgifter lagras lokalt i webbläsarens localStorage. Ingenting skickas till någon server. Dina kurser och framsteg bevaras mellan sessioner tills du rensar webbläsardata.",
     "q9": "Var kan jag hitta ett exempel på en lärstig?",
     "a9": "Du kan ladda ner en .md-fil som mall för att skapa dina egna lärstigar:",
-    "footer": "För felrapporter eller funktionsförfrågningar, öppna en issue på"
+    "footer": "För felrapporter, funktionsförfrågningar eller för att föreslå nya kurser att lägga till, öppna en issue på"
   }
 }

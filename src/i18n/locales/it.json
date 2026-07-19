@@ -121,6 +121,6 @@
     "a8": "Tutti i dati sono memorizzati localmente nel localStorage del tuo browser. Nulla viene inviato a server esterni. I tuoi corsi e i progressi persistono tra le sessioni fino a quando non cancelli i dati del browser.",
     "q9": "Dove posso trovare un esempio di Learning Path?",
     "a9": "Puoi scaricare un file .md di esempio da usare come modello per creare i tuoi propri Percorsi di Apprendimento:",
-    "footer": "Per segnalazioni o richieste di funzionalità, apri un'issue su"
+    "footer": "Per segnalazioni, richieste di funzionalità o per proporre nuovi corsi da aggiungere, apri un'issue su"
   }
 }

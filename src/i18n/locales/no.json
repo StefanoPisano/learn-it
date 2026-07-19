@@ -116,6 +116,6 @@
     "a8": "Alle data lagres lokalt i nettleserens localStorage. Ingenting sendes til noen server. Kursene og fremgangen din bevares mellom økter til du sletter nettleserdata.",
     "q9": "Hvor kan jeg finne et eksempel på en læringssti?",
     "a9": "Du kan laste ned en .md-fil som mal for å opprette dine egne læringsstier:",
-    "footer": "For feilmeldinger eller funksjonsforespørsler, vennligst åpne en issue på"
+    "footer": "For feilmeldinger, funksjonsforespørsler eller for å foreslå nye kurs å legge til, vennligst åpne en issue på"
   }
 }

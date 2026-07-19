@@ -116,6 +116,6 @@
     "a8": "Toutes les données sont stockées localement dans le localStorage de votre navigateur. Rien n'est envoyé à un serveur. Vos cours et progrès persistent entre les sessions jusqu'à ce que vous effaciez les données de votre navigateur.",
     "q9": "Où puis-je trouver un exemple de parcours ?",
     "a9": "Vous pouvez télécharger un fichier .md d'exemple à utiliser comme modèle pour créer vos propres parcours :",
-    "footer": "Pour tout problème ou demande de fonctionnalité, veuillez ouvrir une issue sur"
+    "footer": "Pour tout problème, demande de fonctionnalité ou pour proposer de nouveaux cours à ajouter, veuillez ouvrir une issue sur"
   }
 }
