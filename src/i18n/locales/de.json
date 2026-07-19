@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "Meine Kurse",
-    "learningPaths": "Lernpfade"
+    "learningPaths": "Lernpfade",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "Meine Kurse",
@@ -93,5 +94,28 @@
       "quiz": "Quiz",
       "reference": "Referenzen"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Alles, was du über die Nutzung von Learn It wissen musst",
+    "q1": "Was ist Learn It?",
+    "a1": "Learn It ist ein persönlicher Fähigkeitstracker. Es hilft dir, Lernmaterial in strukturierte Lernpfade zu organisieren, deinen Fortschritt zu verfolgen und dein Wissen mit Quizfragen zu testen.",
+    "q2": "Wie folge ich einem Kurs?",
+    "a2": "Gehe zu 'Lernpfade' und klicke auf 'Folgen' auf der Kurskarte. Sobald du einem Kurs folgst, erscheint er in 'Meine Kurse', wo du deinen Fortschritt verfolgen kannst. Du musst einem Kurs folgen, bevor du ihn öffnen kannst.",
+    "q3": "Wie importiere ich einen Lernpfad?",
+    "a3": "Klicke auf 'Importieren' auf der Seite Lernpfade, dann ziehe eine .md-Datei hierher oder klicke zum Durchsuchen. Du siehst eine Vorschau des analysierten Inhalts, bevor du den Import bestätigst. Die Datei muss eine gültige .md-Datei unter 50KB sein.",
+    "q4": "Wie erstelle ich meinen eigenen Lernpfad?",
+    "a4": "Erstelle eine Markdown-Datei (.md) mit YAML-Metadatenblöcken, die durch --- getrennt sind. Der erste Block definiert globale Metadaten (title, description, tags, difficulty, author, language). Jeder folgende Block definiert einen Abschnitt mit einem Typ (concept, exercise, quiz, reference). Siehe die vollständige Spezifikation in der Projektdokumentation.",
+    "q5": "Welche Abschnittstypen werden unterstützt?",
+    "a5": "Vier Typen: 'concept' für Lehrmaterial, 'exercise' für praktische Aktivitäten, 'quiz' für Wissensüberprüfungen (Einzel- oder Mehrfachauswahl) und 'reference' für Links und Ressourcen.",
+    "q6": "Wie erstelle ich einen Quiz-Abschnitt?",
+    "a6": "Setze den Abschnittstyp auf 'quiz' und füge eine Variante hinzu ('single' oder 'multiple'). Schreibe jede Frage als ###-Überschrift, gefolgt von den Optionen als Liste. Markiere die richtige Antwort mit [x] und falsche mit [ ]. Beispiel:\n\n### Ist useState synchron?\n- [ ] Wahr\n- [x] Falsch",
+    "q7": "Was passiert mit meinem Fortschritt, wenn ich einem Kurs nicht mehr folge?",
+    "a7": "Wenn du einem Kurs nicht mehr folgst, wird dein Fortschritt auf 0% zurückgesetzt. Du kannst dem Kurs später jederzeit wieder folgen.",
+    "q8": "Wo werden meine Daten gespeichert?",
+    "a8": "Alle Daten werden lokal im localStorage deines Browsers gespeichert. Nichts wird an einen Server gesendet. Deine Kurse und dein Fortschritt bleiben zwischen den Sitzungen erhalten, bis du die Browserdaten löschst.",
+    "q9": "Wo finde ich ein Beispiel für einen Lernpfad?",
+    "a9": "Du kannst eine .md-Datei als Vorlage herunterladen, um deine eigenen Lernpfade zu erstellen:",
+    "footer": "Für Fehlermeldungen oder Funktionsanfragen bitte ein Issue eröffnen auf"
   }
 }

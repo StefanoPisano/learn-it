@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "My courses",
-    "learningPaths": "Learning Paths"
+    "learningPaths": "Learning Paths",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "My courses",
@@ -98,5 +99,28 @@
       "quiz": "Quiz",
       "reference": "References"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Everything you need to know about using Learn It",
+    "q1": "What is Learn It?",
+    "a1": "Learn It is a personal skill-learning tracker. It helps you organize learning material into structured Learning Paths, track your progress, and test your knowledge with quizzes.",
+    "q2": "How do I follow a course?",
+    "a2": "Go to \"Learning Paths\" and click the \"Follow\" button on a course card. Once followed, the course appears in \"My courses\" where you can track your progress. You need to follow a course before you can open it.",
+    "q3": "How do I import a Learning Path?",
+    "a3": "Click the \"Import\" button on the Learning Paths page, then drag & drop a .md file or click to browse. You'll see a preview of the parsed content before confirming the import. The file must be a valid .md file under 50KB.",
+    "q4": "How do I create my own Learning Path?",
+    "a4": "Create a Markdown (.md) file with YAML metadata blocks separated by ---. The first block defines global metadata (title, description, tags, difficulty, author, language). Each subsequent block defines a section with a type (concept, exercise, quiz, reference). See the full format specification in the project documentation.",
+    "q5": "What section types are supported?",
+    "a5": "Four types: \"concept\" for reading material, \"exercise\" for practical activities, \"quiz\" for knowledge checks (single or multiple choice), and \"reference\" for links and resources.",
+    "q6": "How do I create a quiz section?",
+    "a6": "Set the section type to \"quiz\" and add a variant (\"single\" or \"multiple\"). Write each question as a ### heading, followed by options as a list. Mark the correct answer with [x] and wrong answers with [ ]. Example:\n\n### Is useState synchronous?\n- [ ] True\n- [x] False",
+    "q7": "What happens to my progress if I unfollow a course?",
+    "a7": "When you unfollow a course, your progress is reset to 0%. You can always follow the course again later.",
+    "q8": "Where is my data stored?",
+    "a8": "All data is stored locally in your browser's localStorage. Nothing is sent to any server. Your courses and progress persist across sessions until you clear your browser data.",
+    "q9": "Where can I find an example Learning Path?",
+    "a9": "You can download a sample .md file to use as a template for creating your own Learning Paths:",
+    "footer": "For any issues or feature requests, please open an issue on"
   }
 }

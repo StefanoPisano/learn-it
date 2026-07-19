@@ -4,6 +4,7 @@ import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
 import { LearningPaths } from './pages/LearningPaths'
 import { LearningPathView } from './pages/LearningPathView'
+import { Faq } from './pages/Faq'
 import { useLearningPathStore } from './store/learningPathStore'
 import { loadBuiltinPaths } from './lib/builtin-paths'
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/paths" element={<LearningPaths />} />
           <Route path="/paths/:id" element={<LearningPathView />} />
+          <Route path="/faq" element={<Faq />} />
         </Route>
       </Routes>
     </BrowserRouter>

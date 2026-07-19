@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "Mina kurser",
-    "learningPaths": "Lärstigar"
+    "learningPaths": "Lärstigar",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "Mina kurser",
@@ -93,5 +94,28 @@
       "quiz": "Quiz",
       "reference": "Referenser"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Allt du behöver veta om att använda Learn It",
+    "q1": "Vad är Learn It?",
+    "a1": "Learn It är en personlig verktygsspårare för inlärning. Det hjälper dig att organisera läromaterial i strukturerade lärstigar, spåra dina framsteg och testa dina kunskaper med quiz.",
+    "q2": "Hur följer jag en kurs?",
+    "a2": "Gå till \"Lärstigar\" och klicka på \"Följ\" på kurskortet. När du följer en kurs visas den i \"Mina kurser\" där du kan spåra dina framsteg. Du måste följa en kurs innan du kan öppna den.",
+    "q3": "Hur importerar jag en lärstig?",
+    "a3": "Klicka på \"Importera\" på sidan Lärstigar, dra och släpp en .md-fil eller klicka för att bläddra. Du ser en förhandsgranskning av det analyserade innehållet innan du bekräftar. Filen måste vara en giltig .md-fil på under 50KB.",
+    "q4": "Hur skapar jag min egen lärstig?",
+    "a4": "Skapa en Markdown-fil (.md) med YAML-metadata-block separerade av ---. Det första blocket definierar globala metadata (title, description, tags, difficulty, author, language). Varje följande block definierar en sektion med en typ (concept, exercise, quiz, reference). Se fullständig specifikation i projektets dokumentation.",
+    "q5": "Vilka sektionstyper stöds?",
+    "a5": "Fra typer: \"concept\" för läsmaterial, \"exercise\" för praktiska aktiviteter, \"quiz\" för kunskapskontroller (enskilt eller flervalsval), och \"reference\" för länkar och resurser.",
+    "q6": "Hur skapar jag en quizsektion?",
+    "a6": "Ange sektionstyp till \"quiz\" och lägg till en variant (\"single\" eller \"multiple\"). Skriv varje fråga som en ###-rubrik, följd av alternativ som en lista. Markera rätt svar med [x] och felaktiga med [ ]. Exempel:\n\n### Är useState synkron?\n- [ ] Sant\n- [x] Falskt",
+    "q7": "Vad händer med mina framsteg om jag slutar följa en kurs?",
+    "a7": "När du slutar följa en kurs nollställs dina framsteg till 0 %. Du kan alltid börja följa kursen igen senare.",
+    "q8": "Var lagras mina uppgifter?",
+    "a8": "Alla uppgifter lagras lokalt i webbläsarens localStorage. Ingenting skickas till någon server. Dina kurser och framsteg bevaras mellan sessioner tills du rensar webbläsardata.",
+    "q9": "Var kan jag hitta ett exempel på en lärstig?",
+    "a9": "Du kan ladda ner en .md-fil som mall för att skapa dina egna lärstigar:",
+    "footer": "För felrapporter eller funktionsförfrågningar, öppna en issue på"
   }
 }

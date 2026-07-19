@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "Mine kurs",
-    "learningPaths": "Læringsstier"
+    "learningPaths": "Læringsstier",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "Mine kurs",
@@ -93,5 +94,28 @@
       "quiz": "Quiz",
       "reference": "Referanser"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Alt du trenger å vite om å bruke Learn It",
+    "q1": "Hva er Learn It?",
+    "a1": "Learn It er en personlig ferdighetssporer. Det hjelper deg å organisere læremateriale i strukturerte læringsstier, spore fremgangen din og teste kunnskapene dine med quiz.",
+    "q2": "Hvordan følger jeg et kurs?",
+    "a2": "Gå til \"Læringsstier\" og klikk \"Følg\" på kurskortet. Når du følger et kurs, vises det i \"Mine kurs\" der du kan spore fremgangen din. Du må følge et kurs før du kan åpne det.",
+    "q3": "Hvordan importerer jeg en læringssti?",
+    "a3": "Klikk \"Importer\" på siden Læringsstier, og slipp en .md-fil eller klikk for å bla gjennom. Du får en forhåndsvisning av det analyserte innholdet før du bekrefter. Filen må være en gyldig .md-fil under 50KB.",
+    "q4": "Hvordan oppretter jeg min egen læringssti?",
+    "a4": "Opprett en Markdown-fil (.md) med YAML-metadatablokker separert med ---. Det første blokket definerer globale metadata (title, description, tags, difficulty, author, language). Hvert påfølgende blokk definerer en seksjon med en type (concept, exercise, quiz, reference). Se fullstendig spesifikasjon i prosjektdokumentasjonen.",
+    "q5": "Hvilke seksjonstyper støttes?",
+    "a5": "Fire typer: \"concept\" for lesemateriale, \"exercise\" for praktiske aktiviteter, \"quiz\" for kunnskapssjekker (enkel eller flervalg), og \"reference\" for lenker og ressurser.",
+    "q6": "Hvordan oppretter jeg en quizseksjon?",
+    "a6": "Sett seksjonstypen til \"quiz\" og legg til en variant (\"single\" eller \"multiple\"). Skriv hvert spørsmål som en ###-overskrift, fulgt av alternativer som en liste. Merk riktig svar med [x] og feil med [ ]. Eksempel:\n\n### Er useState synkron?\n- [ ] Sant\n- [x] Usant",
+    "q7": "Hva skjer med fremgangen min hvis jeg slutter å følge et kurs?",
+    "a7": "Når du slutter å følge et kurs, tilbakestilles fremgangen din til 0 %. Du kan alltid begynne å følge kurset igjen senere.",
+    "q8": "Hvor lagres dataene mine?",
+    "a8": "Alle data lagres lokalt i nettleserens localStorage. Ingenting sendes til noen server. Kursene og fremgangen din bevares mellom økter til du sletter nettleserdata.",
+    "q9": "Hvor kan jeg finne et eksempel på en læringssti?",
+    "a9": "Du kan laste ned en .md-fil som mal for å opprette dine egne læringsstier:",
+    "footer": "For feilmeldinger eller funksjonsforespørsler, vennligst åpne en issue på"
   }
 }

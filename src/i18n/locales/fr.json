@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "Mes cours",
-    "learningPaths": "Parcours"
+    "learningPaths": "Parcours",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "Mes cours",
@@ -93,5 +94,28 @@
       "quiz": "Quiz",
       "reference": "Références"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Tout ce que vous devez savoir sur l'utilisation de Learn It",
+    "q1": "Qu'est-ce que Learn It ?",
+    "a1": "Learn It est un suivi personnel d'apprentissage de compétences. Il vous aide à organiser du matériel de cours en Parcours structurés, suivre vos progrès et tester vos connaissances avec des quiz.",
+    "q2": "Comment suivre un cours ?",
+    "a2": "Allez dans « Parcours » et cliquez sur « Suivre » sur la carte du cours. Une fois suivi, le cours apparaît dans « Mes cours » où vous pouvez suivre vos progrès. Vous devez suivre un cours avant de pouvoir l'ouvrir.",
+    "q3": "Comment importer un parcours ?",
+    "a3": "Cliquez sur « Importer » dans la page Parcours, puis glissez-déposez un fichier .md ou cliquez pour parcourir. Vous verrez un aperçu du contenu analysé avant de confirmer. Le fichier doit être un .md valide de moins de 50 Ko.",
+    "q4": "Comment créer mon propre parcours ?",
+    "a4": "Créez un fichier Markdown (.md) avec des blocs de métadonnées YAML séparés par ---. Le premier bloc définit les métadonnées globales (title, description, tags, difficulty, author, language). Chaque bloc suivant définit une section avec un type (concept, exercise, quiz, reference). Voir la spécification complète dans la documentation du projet.",
+    "q5": "Quels types de sections sont supportés ?",
+    "a5": "Quatre types : « concept » pour le matériel de lecture, « exercise » pour les activités pratiques, « quiz » pour les vérifications (choix unique ou multiple), et « reference » pour les liens et ressources.",
+    "q6": "Comment créer une section quiz ?",
+    "a6": "Définissez le type de section sur « quiz » et ajoutez une variante (« single » ou « multiple »). Écrivez chaque question comme un titre ###, suivie des options sous forme de liste. Marquez la bonne réponse avec [x] et les mauvaises avec [ ]. Exemple :\n\n### useState est-il synchrone ?\n- [ ] Vrai\n- [x] Faux",
+    "q7": "Qu'advient-il de mes progrès si je ne suis plus un cours ?",
+    "a7": "Quand vous ne suivez plus un cours, vos progrès sont réinitialisés à 0 %. Vous pouvez toujours recommencer à suivre le cours plus tard.",
+    "q8": "Où sont stockées mes données ?",
+    "a8": "Toutes les données sont stockées localement dans le localStorage de votre navigateur. Rien n'est envoyé à un serveur. Vos cours et progrès persistent entre les sessions jusqu'à ce que vous effaciez les données de votre navigateur.",
+    "q9": "Où puis-je trouver un exemple de parcours ?",
+    "a9": "Vous pouvez télécharger un fichier .md d'exemple à utiliser comme modèle pour créer vos propres parcours :",
+    "footer": "Pour tout problème ou demande de fonctionnalité, veuillez ouvrir une issue sur"
   }
 }

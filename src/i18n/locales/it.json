@@ -1,7 +1,8 @@
 {
   "nav": {
     "dashboard": "I miei corsi",
-    "learningPaths": "Percorsi"
+    "learningPaths": "Percorsi",
+    "faq": "FAQ"
   },
   "dashboard": {
     "title": "I miei corsi",
@@ -98,5 +99,28 @@
       "quiz": "Quiz",
       "reference": "Riferimenti"
     }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Tutto quello che devi sapere sull'uso di Learn It",
+    "q1": "Cos'è Learn It?",
+    "a1": "Learn It è un tracker personale per l'apprendimento di abilità. Ti aiuta a organizzare il materiale di studio in Percorsi di Apprendimento strutturati, monitorare i tuoi progressi e testare le tue conoscenze con quiz.",
+    "q2": "Come seguo un corso?",
+    "a2": "Vai su \"Percorsi\" e clicca il pulsante \"Segui\" sulla scheda del corso. Una volta seguito, il corso appare in \"I miei corsi\" dove puoi monitorare i progressi. Devi seguire un corso prima di poterlo aprire.",
+    "q3": "Come importo un Percorso di Apprendimento?",
+    "a3": "Clicca il pulsante \"Importa\" nella pagina Percorsi, poi trascina un file .md o clicca per sfogliare. Vedrai un'anteprima del contenuto analizzato prima di confermare l'importazione. Il file deve essere un .md valido di meno di 50KB.",
+    "q4": "Come creo il mio Percorso di Apprendimento?",
+    "a4": "Crea un file Markdown (.md) con blocchi di metadati YAML separati da ---. Il primo blocco definisce i metadati globali (title, description, tags, difficulty, author, language). Ogni blocco successivo definisce una sezione con un tipo (concept, exercise, quiz, reference). Vedi la specifica completa nella documentazione del progetto.",
+    "q5": "Quali tipi di sezione sono supportati?",
+    "a5": "Quattro tipi: \"concept\" per materiale di lettura, \"exercise\" per attività pratiche, \"quiz\" per verifiche (scelta singola o multipla), e \"reference\" per link e risorse.",
+    "q6": "Come creo una sezione quiz?",
+    "a6": "Imposta il tipo di sezione su \"quiz\" e aggiungi una variante (\"single\" o \"multiple\"). Scrivi ogni domanda come intestazione ###, seguita dalle opzioni come lista. Segna la risposta corretta con [x] e quelle sbagliate con [ ]. Esempio:\n\n### useState è sincrono?\n- [ ] Vero\n- [x] Falso",
+    "q7": "Cosa succede al mio progresso se smetto di seguire un corso?",
+    "a7": "Quando smetti di seguire un corso, il tuo progresso viene azzerato. Puoi sempre ricominciare a seguire il corso in seguito.",
+    "q8": "Dove sono memorizzati i miei dati?",
+    "a8": "Tutti i dati sono memorizzati localmente nel localStorage del tuo browser. Nulla viene inviato a server esterni. I tuoi corsi e i progressi persistono tra le sessioni fino a quando non cancelli i dati del browser.",
+    "q9": "Dove posso trovare un esempio di Learning Path?",
+    "a9": "Puoi scaricare un file .md di esempio da usare come modello per creare i tuoi propri Percorsi di Apprendimento:",
+    "footer": "Per segnalazioni o richieste di funzionalità, apri un'issue su"
   }
 }
