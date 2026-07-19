@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Kontrollpanel",
+    "dashboard": "Mine kurs",
     "learningPaths": "Læringsstier",
     "tags": "Tagger",
     "settings": "Innstillinger"
   },
   "dashboard": {
-    "title": "Kontrollpanel",
+    "title": "Mine kurs",
     "subtitle": "Din læringsprogresjon i et øyeblikk",
     "importPath": "Importer",
     "searchPlaceholder": "Søk læringsstier...",

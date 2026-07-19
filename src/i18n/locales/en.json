@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "My courses",
     "learningPaths": "Learning Paths",
     "tags": "Tags",
     "settings": "Settings"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "My courses",
     "subtitle": "Your learning progress at a glance",
     "searchPlaceholder": "Search followed courses...",
     "emptyState": "No courses match your search",

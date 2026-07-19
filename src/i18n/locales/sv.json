@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Instrumentpanel",
+    "dashboard": "Mina kurser",
     "learningPaths": "Lärstigar",
     "tags": "Taggar",
     "settings": "Inställningar"
   },
   "dashboard": {
-    "title": "Instrumentpanel",
+    "title": "Mina kurser",
     "subtitle": "Din inlärningsprogress i överblick",
     "importPath": "Importera",
     "searchPlaceholder": "Sök lärstigar...",

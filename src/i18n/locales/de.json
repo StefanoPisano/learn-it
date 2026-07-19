@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "Meine Kurse",
     "learningPaths": "Lernpfade",
     "tags": "Tags",
     "settings": "Einstellungen"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Meine Kurse",
     "subtitle": "Dein Lernfortschritt auf einen Blick",
     "importPath": "Importieren",
     "searchPlaceholder": "Lernpfade suchen...",

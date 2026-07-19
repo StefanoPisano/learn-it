@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Tableau de bord",
+    "dashboard": "Mes cours",
     "learningPaths": "Parcours",
     "tags": "Tags",
     "settings": "Paramètres"
   },
   "dashboard": {
-    "title": "Tableau de bord",
+    "title": "Mes cours",
     "subtitle": "Votre progression d'apprentissage en un coup d'œil",
     "importPath": "Importer",
     "searchPlaceholder": "Rechercher des parcours...",

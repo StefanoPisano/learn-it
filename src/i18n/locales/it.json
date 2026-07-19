@@ -1,12 +1,12 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "I miei corsi",
     "learningPaths": "Percorsi",
     "tags": "Tag",
     "settings": "Impostazioni"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "I miei corsi",
     "subtitle": "Il tuo progresso di apprendimento in sintesi",
     "searchPlaceholder": "Cerca corsi seguiti...",
     "emptyState": "Nessun corrisponde alla tua ricerca",
