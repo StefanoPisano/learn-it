@@ -34,8 +34,31 @@
   "theme": {
     "toggleLabel": "Passa alla modalità {{mode}}"
   },
+  "import": {
+    "title": "Importa Percorso di Apprendimento",
+    "dragDrop": "Trascina qui un file .md, o clicca per sfogliare",
+    "browse": "Sfoglia File",
+    "maxSize": "Dimensione massima file: 50KB",
+    "invalidFormat": "Sono accettati solo file .md",
+    "fileTooLarge": "Il file supera il limite di 50KB. Prova a dividere il learning path in due file separati.",
+    "parsing": "Analisi del file...",
+    "preview": "Anteprima",
+    "confirmImport": "Importa",
+    "cancel": "Annulla",
+    "success": "Percorso di apprendimento importato con successo",
+    "error": "Errore durante l'importazione del file",
+    "fields": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "difficulty": "Difficoltà",
+      "tags": "Tag",
+      "author": "Autore",
+      "language": "Lingua"
+    }
+  },
   "parser": {
     "titleRequired": "Il campo \"title\" è obbligatorio nei metadati globali",
+    "descriptionRequired": "Il campo \"description\" è obbligatorio nei metadati globali",
     "tagsRequired": "Il campo \"tags\" è obbligatorio e deve contenere almeno un tag",
     "difficultyRequired": "Il campo \"difficulty\" è obbligatorio nei metadati globali",
     "difficultyInvalid": "\"difficulty\" deve essere \"beginner\", \"intermediate\" o \"advanced\". Ricevuto: \"{{difficulty}}\"",

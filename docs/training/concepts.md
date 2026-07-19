@@ -231,10 +231,25 @@ How it works:
 Stores all learning paths with CRUD operations. Used by both Dashboard and LearningPaths pages.
 
 ```tsx
+export interface LearningPath {
+  id: number
+  title: string
+  description: string
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  tags: string[]
+  progress: number
+  author: string
+  language: string
+  link?: string
+  date?: string
+  version?: string
+  sections?: Section[]
+}
+
 export const useLearningPathStore = create<LearningPathState>()(
   persist(
     (set) => ({
-      paths: mockLearningPaths,
+      paths: [],
 
       addPath: (path) => set((state) => ({
         paths: [...state.paths, { ...path, id: nextId }],
@@ -248,7 +263,10 @@ export const useLearningPathStore = create<LearningPathState>()(
         paths: state.paths.map((p) => p.id === id ? { ...p, ...updates } : p),
       })),
     }),
-    { name: 'learn-it-paths' },
+    {
+      name: 'learn-it-paths',
+      storage: createJSONStorage(() => localStorage),
+    },
   ),
 )
 ```
@@ -305,16 +323,16 @@ A React hook that memoizes a computed value. It only recalculates when its depen
 
 ```tsx
 const filteredPaths = useMemo(() => {
-  if (!search.trim()) return mockLearningPaths
+  if (!search.trim()) return paths
 
   const query = search.toLowerCase()
-  return mockLearningPaths.filter(
+  return paths.filter(
     (path) =>
       path.title.toLowerCase().includes(query) ||
       path.description.toLowerCase().includes(query) ||
       path.tags.some((tag) => tag.toLowerCase().includes(query)),
   )
-}, [search])  // ← Only recalculates when search changes
+}, [search, paths])  // ← Only recalculates when search or paths change
 ```
 
 ### When to use it
@@ -327,3 +345,75 @@ const filteredPaths = useMemo(() => {
 - Simple derivations (e.g., `const double = count * 2`)
 - Values that change every render anyway
 - Premature optimization — React is already fast for most cases
+
+---
+
+## Internationalization (i18n)
+
+The app uses `react-i18next` for multi-language support (English and Italian).
+
+### Setup
+
+**File**: `src/i18n/index.ts`
+
+```tsx
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
+import en from './locales/en.json'
+import it from './locales/it.json'
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: { en: { translation: en }, it: { translation: it } },
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false },
+  })
+```
+
+### How it works
+
+1. `LanguageDetector` reads the user's preferred language from localStorage
+2. `initReactI18next` connects i18n to React components
+3. `useTranslation()` hook provides the `t()` function for translations
+
+### Using translations in components
+
+```tsx
+import { useTranslation } from 'react-i18next'
+
+function MyComponent() {
+  const { t } = useTranslation()
+  return <h1>{t('dashboard.title')}</h1>
+}
+```
+
+### Translation files
+
+- `src/i18n/locales/en.json` — English translations
+- `src/i18n/locales/it.json` — Italian translations
+
+Keys are organized by feature: `dashboard.*`, `import.*`, `parser.*`, etc.
+
+### Language persistence
+
+**File**: `src/store/languageStore.ts`
+
+```tsx
+export const useLanguageStore = create<LanguageState>()(
+  persist(
+    (set) => ({
+      language: 'en',
+      setLanguage: (language) => {
+        set({ language })
+        i18n.changeLanguage(language)
+      },
+    }),
+    { name: 'learn-it-language' },
+  ),
+)
+```
+
+The language preference is saved to localStorage and restored on page load.

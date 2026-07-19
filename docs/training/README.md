@@ -10,3 +10,4 @@ Documentation for components and key concepts used in the Learn It project.
 |----------|-------------|
 | [Components](components.md) | What each component does, when to use it, and its props |
 | [Concepts](concepts.md) | Key React and React Router concepts (BrowserRouter, nested routes, Outlet, etc.) |
+| [Markdown Format](../markdown-format.md) | How to create Learning Paths in Markdown |

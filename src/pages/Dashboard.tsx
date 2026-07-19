@@ -3,12 +3,14 @@ import { Search, Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
+import { ImportModal } from '../components/ImportModal'
 import { useLearningPathStore } from '../store/learningPathStore'
 
 export function Dashboard() {
   const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
   const [search, setSearch] = useState('')
+  const [isImportOpen, setIsImportOpen] = useState(false)
 
   const filteredPaths = useMemo(() => {
     if (!search.trim()) return paths
@@ -34,7 +36,10 @@ export function Dashboard() {
           </p>
         </div>
 
-        <button className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors">
+        <button
+          onClick={() => setIsImportOpen(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors"
+        >
           <Plus className="w-5 h-5" />
           {t('dashboard.importPath')}
         </button>
@@ -60,6 +65,8 @@ export function Dashboard() {
           ))}
         </div>
       )}
+
+      <ImportModal isOpen={isImportOpen} onClose={() => setIsImportOpen(false)} />
     </div>
   )
 }

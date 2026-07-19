@@ -1,3 +1,5 @@
+import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
+
 interface LearningPathCardProps {
   title: string
   description: string
@@ -56,7 +58,7 @@ export function LearningPathCard({
       <div className="px-4 py-3 border-t border-[var(--color-border)] bg-[var(--color-background)]/50">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-[var(--color-text-secondary)]">
-            {author} · {language.toUpperCase()}
+            {author} · <span title={getLanguageName(language)}>{getLanguageDisplay(language)}</span>
           </span>
           <span className="text-xs font-medium text-[var(--color-text-secondary)]">
             {progress}%

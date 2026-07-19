@@ -91,6 +91,7 @@ Card component that displays a learning path summary with title, difficulty badg
 | `tags` | `string[]` | List of tags |
 | `progress` | `number` | Completion percentage (0-100) |
 | `author` | `string` | Author name |
+| `link?` | `string` | Optional external URL |
 
 ### Visual Sections
 
@@ -118,6 +119,68 @@ Button that toggles between light and dark mode. Displays a moon icon in light m
 ### Props
 
 None — reads and writes state via `useThemeStore`.
+
+---
+
+## LanguageToggle
+
+**File**: `src/components/LanguageToggle.tsx`
+
+Button that toggles between English and Italian. Displays "EN" or "IT" based on current language.
+
+### Behavior
+
+- Click toggles between EN and IT
+- Preference saved to localStorage via `useLanguageStore`
+- i18next language is updated immediately
+- Uses `useTranslation` hook for localized labels
+
+### Props
+
+None — reads and writes state via `useLanguageStore` and `i18next`.
+
+---
+
+## ImportModal
+
+**File**: `src/components/ImportModal.tsx`
+
+Modal dialog for importing Learning Paths from Markdown files. Supports drag & drop and file browser.
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `isOpen` | `boolean` | Controls modal visibility |
+| `onClose` | `() => void` | Callback to close the modal |
+
+### States
+
+| State | Description |
+|-------|-------------|
+| `idle` | Shows drag & drop area and file browser |
+| `parsing` | Loading spinner while parsing the file |
+| `preview` | Shows parsed data (title, description, difficulty, tags, author) for confirmation |
+| `importing` | Saving the path to the store |
+| `success` | Confirmation message, auto-closes after 1.5s |
+| `error` | Error message with retry button |
+
+### Validation
+
+| Rule | Error Message |
+|------|---------------|
+| Not a `.md` file | "File must be a Markdown (.md) file" |
+| File > 50KB | "File exceeds 50KB limit. Try splitting the learning path into two separate files." |
+| Parse error | Shows the specific parsing error |
+
+### Flow
+
+1. User drops or selects a `.md` file
+2. File is validated (extension + size)
+3. File content is parsed by `parseMarkdown`
+4. Parsed data is displayed in preview
+5. User confirms → `addPath` is called → path is saved to store (localStorage)
+6. Modal auto-closes after success
 
 ---
 

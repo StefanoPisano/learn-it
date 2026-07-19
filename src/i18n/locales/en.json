@@ -34,8 +34,31 @@
   "theme": {
     "toggleLabel": "Switch to {{mode}} mode"
   },
+  "import": {
+    "title": "Import Learning Path",
+    "dragDrop": "Drag & drop a .md file here, or click to browse",
+    "browse": "Browse Files",
+    "maxSize": "Maximum file size: 50KB",
+    "invalidFormat": "Only .md files are accepted",
+    "fileTooLarge": "File exceeds 50KB limit. Try splitting the learning path into two separate files.",
+    "parsing": "Parsing file...",
+    "preview": "Preview",
+    "confirmImport": "Import",
+    "cancel": "Cancel",
+    "success": "Learning path imported successfully",
+    "error": "Error importing file",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "difficulty": "Difficulty",
+      "tags": "Tags",
+      "author": "Author",
+      "language": "Language"
+    }
+  },
   "parser": {
     "titleRequired": "\"title\" is required in global metadata",
+    "descriptionRequired": "\"description\" is required in global metadata",
     "tagsRequired": "\"tags\" is required and must contain at least one tag",
     "difficultyRequired": "\"difficulty\" is required in global metadata",
     "difficultyInvalid": "\"difficulty\" must be \"beginner\", \"intermediate\" or \"advanced\". Received: \"{{difficulty}}\"",

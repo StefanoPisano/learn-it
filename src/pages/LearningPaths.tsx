@@ -3,6 +3,7 @@ import { Search, Plus, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
+import { ImportModal } from '../components/ImportModal'
 import { useLearningPathStore } from '../store/learningPathStore'
 
 type Difficulty = 'beginner' | 'intermediate' | 'advanced'
@@ -15,6 +16,7 @@ export function LearningPaths() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState<SortBy>('title')
+  const [isImportOpen, setIsImportOpen] = useState(false)
 
   const difficulties: { value: Difficulty; label: string }[] = [
     { value: 'beginner', label: t('learningPaths.difficulty.beginner') },
@@ -82,7 +84,10 @@ export function LearningPaths() {
           </p>
         </div>
 
-        <button className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors">
+        <button
+          onClick={() => setIsImportOpen(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-primary)]/90 transition-colors"
+        >
           <Plus className="w-5 h-5" />
           {t('learningPaths.importPath')}
         </button>
@@ -167,6 +172,8 @@ export function LearningPaths() {
           ))}
         </div>
       )}
+
+      <ImportModal isOpen={isImportOpen} onClose={() => setIsImportOpen(false)} />
     </div>
   )
 }

@@ -14,34 +14,35 @@ A personal skill-learning tracker that helps you learn and share new skills thro
 | Tailwind CSS | Styling |
 | Zustand | State management |
 | React Router | Navigation |
-| LocalStorage | Data persistence |
+| react-i18next | Internationalization (EN/IT) |
+| localStorage | Data persistence |
 | GitHub Pages | Deployment |
 
 ## 🗺️ Roadmap
 
 ### Phase 1: Core Features
-- [ ] Dashboard with Learning Path cards
-- [ ] Markdown parser for importing Learning Paths
-- [ ] Learning Path viewer with section navigation
-- [ ] Progress tracking with checkboxes
+- [x] Dashboard with Learning Path cards
+- [x] Markdown parser for importing Learning Paths
+- [x] Learning Path viewer with section navigation
+- [x] Progress tracking with checkboxes
 
 ### Phase 2: Interactive Learning
-- [ ] True/False quiz component
-- [ ] Multiple choice quiz component
-- [ ] Quiz scoring and feedback
+- [x] True/False quiz component
+- [x] Multiple choice quiz component
+- [x] Quiz scoring and feedback
 - [ ] Skill acquisition status
 
 ### Phase 3: Organization & Sharing
-- [ ] Tag-based filtering and search
+- [x] Tag-based filtering and search
 - [ ] Export Learning Paths to Markdown
 - [ ] Create new Learning Paths in-app
-- [ ] Import preview before saving
+- [x] Import preview before saving
 
 ### Phase 4: Polish & Optimization
 - [ ] Responsive design for mobile
 - [ ] Animations and transitions
 - [ ] Empty states and loading indicators
-- [ ] Performance optimizations
+- [x] Internationalization (EN/IT)
 
 ## 🚀 How to Run
 
@@ -77,9 +78,21 @@ npm run dev
 
 ## 📖 How to Use
 
-*Coming soon - features are currently under development!*
+### Importing a Learning Path
+
+1. Click the **Import Learning Path** button on the Dashboard or Learning Paths page
+2. Drag and drop a `.md` file or click to browse
+3. Preview the parsed content (title, description, difficulty, tags, author)
+4. Confirm the import — the path is saved locally and persists across sessions
+
+> ⚠️ File size limit: **50KB**. If your file exceeds this, try splitting the learning path into two separate files.
+
+### Language Switching
+
+Toggle between English and Italian using the language button in the sidebar. Your preference is saved automatically.
 
 ## 📚 Documentation
 
 - [Markdown Format Specification](docs/markdown-format.md) - How to create Learning Paths
 - [Design System](docs/design/style.md) - Colors, typography, spacing, and style rules
+- [Training Documentation](docs/training/README.md) - Components and concepts used in the project
