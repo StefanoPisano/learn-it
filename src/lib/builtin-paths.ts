@@ -1,10 +1,16 @@
 import type { LearningPath, Section } from '../store/learningPathStore'
 
-const modules = import.meta.glob('/src/learning-paths/**/*.md', { as: 'raw', eager: true })
+const modules = import.meta.glob('/src/learning-paths/**/*.md', { query: '?raw', eager: true })
 
 function slugFromPath(path: string): string {
   const filename = path.split('/').pop() ?? path
   return filename.replace(/\.md$/, '')
+}
+
+function getRawContent(value: unknown): string {
+  if (typeof value === 'string') return value
+  if (value && typeof value === 'object' && 'default' in value) return (value as { default: string }).default
+  return ''
 }
 
 function parseSectionMetadata(yamlText: string): { type: string; variant?: string } {
@@ -145,7 +151,7 @@ export interface BuiltinPath {
 export function loadBuiltinPaths(): BuiltinPath[] {
   const paths: BuiltinPath[] = []
   for (const [filePath, content] of Object.entries(modules)) {
-    const parsed = parseMarkdown(content as string)
+    const parsed = parseMarkdown(getRawContent(content))
     if (!parsed) continue
     paths.push({ slug: slugFromPath(filePath), data: parsed })
   }
