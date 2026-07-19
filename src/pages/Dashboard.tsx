@@ -9,6 +9,7 @@ import { useLearningPathStore } from '../store/learningPathStore'
 export function Dashboard() {
   const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
+  const removePath = useLearningPathStore((state) => state.removePath)
   const [search, setSearch] = useState('')
   const [isImportOpen, setIsImportOpen] = useState(false)
 
@@ -23,6 +24,13 @@ export function Dashboard() {
         path.tags.some((tag) => tag.toLowerCase().includes(query)),
     )
   }, [search, paths])
+
+  const handleDelete = (id: number) => {
+    const path = paths.find((p) => p.id === id)
+    if (path && window.confirm(t('dashboard.deleteConfirm', { title: path.title }))) {
+      removePath(id)
+    }
+  }
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -61,7 +69,7 @@ export function Dashboard() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredPaths.map((path) => (
-            <LearningPathCard key={path.id} {...path} />
+            <LearningPathCard key={path.id} {...path} onDelete={handleDelete} />
           ))}
         </div>
       )}

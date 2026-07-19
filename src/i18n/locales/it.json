@@ -10,7 +10,9 @@
     "subtitle": "Il tuo progresso di apprendimento in sintesi",
     "importPath": "Importa",
     "searchPlaceholder": "Cerca percorsi di apprendimento...",
-    "emptyState": "Nessun percorso corrisponde alla tua ricerca"
+    "emptyState": "Nessun percorso corrisponde alla tua ricerca",
+    "deleteConfirm": "Sei sicuro di voler eliminare \"{{title}}\"?",
+    "deleteSuccess": "Percorso eliminato"
   },
   "learningPaths": {
     "title": "Percorsi",

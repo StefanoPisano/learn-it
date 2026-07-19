@@ -1,6 +1,8 @@
+import { Trash2 } from 'lucide-react'
 import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
 
 interface LearningPathCardProps {
+  id: number
   title: string
   description: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
@@ -8,6 +10,7 @@ interface LearningPathCardProps {
   progress: number
   author: string
   language: string
+  onDelete?: (id: number) => void
 }
 
 const difficultyColors = {
@@ -17,6 +20,7 @@ const difficultyColors = {
 }
 
 export function LearningPathCard({
+  id,
   title,
   description,
   difficulty,
@@ -24,6 +28,7 @@ export function LearningPathCard({
   progress,
   author,
   language,
+  onDelete,
 }: LearningPathCardProps) {
   return (
     <div className="bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
@@ -32,11 +37,22 @@ export function LearningPathCard({
           <h3 className="font-semibold text-[var(--color-text)] line-clamp-1">
             {title}
           </h3>
-          <span
-            className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${difficultyColors[difficulty]}`}
-          >
-            {difficulty}
-          </span>
+          <div className="flex items-center gap-2">
+            <span
+              className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${difficultyColors[difficulty]}`}
+            >
+              {difficulty}
+            </span>
+            {onDelete && (
+              <button
+                onClick={() => onDelete(id)}
+                className="p-1 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-[var(--color-text-secondary)] hover:text-red-500 transition-colors"
+                aria-label="Delete"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 mb-3">

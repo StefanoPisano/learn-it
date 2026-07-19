@@ -10,7 +10,9 @@
     "subtitle": "Your learning progress at a glance",
     "importPath": "Import",
     "searchPlaceholder": "Search learning paths...",
-    "emptyState": "No learning paths match your search"
+    "emptyState": "No learning paths match your search",
+    "deleteConfirm": "Are you sure you want to delete \"{{title}}\"?",
+    "deleteSuccess": "Learning path deleted"
   },
   "learningPaths": {
     "title": "Learning Paths",
