@@ -74,5 +74,26 @@
     "questionNoCorrect": "La domanda \"{{question}}\" non ha una risposta corretta contrassegnata con [x]",
     "fileInvalid": "Il file deve contenere almeno un blocco di metadati globali e una sezione",
     "quizNoQuestions": "Le sezioni quiz devono contenere almeno una domanda"
+  },
+  "viewer": {
+    "backToPaths": "Torna ai percorsi",
+    "sectionProgress": "Sezione {{current}} di {{total}}",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "completed": "Completato",
+    "checkAnswers": "Verifica risposte",
+    "retry": "Riprova",
+    "correct": "corrette",
+    "markComplete": "Completa",
+    "reset": "Azzera progresso",
+    "resetConfirm": "Sei sicuro di voler azzerare tutto il progresso di questo percorso?",
+    "completeAll": "Completa tutto",
+    "sections": "Sezioni",
+    "sectionType": {
+      "concept": "Concetto",
+      "exercise": "Esercizio",
+      "quiz": "Quiz",
+      "reference": "Riferimenti"
+    }
   }
 }

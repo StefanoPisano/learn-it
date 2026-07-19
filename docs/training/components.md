@@ -8,7 +8,7 @@ Documentation for all components in the project.
 
 **File**: `src/components/Layout.tsx`
 
-Main container that wraps the entire application. Provides a persistent sidebar + header and renders the active page content inside an `<Outlet />`.
+Main container that wraps the entire application. Provides a persistent sidebar + header and renders the active page content inside an `<Outlet />`. The `<main>` element has `overflow-x-hidden` to prevent horizontal scroll from wide content (e.g., markdown tables).
 
 ### Structure
 
@@ -195,6 +195,47 @@ Displayed when a list has no items to show (e.g., no search results).
 | Prop | Type | Description |
 |------|------|-------------|
 | `message` | `string` | Message to display |
+
+---
+
+## SectionList
+
+**File**: `src/components/SectionList.tsx`
+
+Vertical navigation list showing all sections of a learning path with type-specific icons, current section highlighting, and completed/incomplete styling.
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `sections` | `Section[]` | List of sections to display |
+| `completedSections` | `Set<number>` | Set of completed section indices |
+| `currentIndex` | `number` | Index of the currently active section |
+| `onNavigate` | `(index: number) => void` | Callback when a section is clicked |
+
+### Behavior
+
+| State | Icon | Text Color | Background |
+|-------|------|------------|------------|
+| **Current** | Type icon (white) | White | Primary color |
+| **Completed** | Type icon (secondary) | Secondary | Transparent |
+| **Incomplete** | Type icon (secondary) | Primary text | Transparent |
+
+Section name is extracted from the first `##` heading in the content. Falls back to capitalized type name (e.g., "Concept", "Reference"). Quiz sections always show "Quiz".
+
+### Section Icons
+
+| Type | Icon |
+|------|------|
+| `concept` | `BookOpen` |
+| `exercise` | `Pencil` |
+| `quiz` | `Pencil` |
+| `reference` | `ExternalLink` |
+
+### Integration
+
+- **Desktop (≥ 1024px)**: rendered in a sticky sidebar (`<aside>`, 256px width)
+- **Mobile (< 1024px)**: hidden by default, opens as a slide-in overlay panel
 
 ---
 

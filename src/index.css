@@ -4,6 +4,7 @@
   --color-accent: #F59E0B;
   --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
+  --color-surface-hover: #F1F5F9;
   --color-text: #1E293B;
   --color-text-secondary: #64748B;
   --color-border: #E2E8F0;
@@ -15,12 +16,15 @@
   --color-accent: #FBBF24;
   --color-background: #0F172A;
   --color-surface: #1E293B;
+  --color-surface-hover: #334155;
   --color-text: #F8FAFC;
-  --color-text-secondary: #94A3B8;
+  --color-text-secondary: #CBD5E1;
   --color-border: #334155;
 }
 
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+@plugin "@tailwindcss/typography";
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;

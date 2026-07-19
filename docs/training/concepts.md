@@ -300,6 +300,14 @@ Used for component-specific overrides (e.g., difficulty badges):
 <span class="bg-green-100 dark:bg-green-900/30">...</span>
 ```
 
+In Tailwind CSS v4, dark mode uses `prefers-color-scheme` by default. Since this app uses a `.dark` class on `<html>`, we configure class-based dark mode in `index.css`:
+
+```css
+@custom-variant dark (&:is(.dark *));
+```
+
+This makes `dark:` utilities activate when an element is inside a `.dark` ancestor.
+
 ### 3. Theme Toggle + localStorage
 
 ```

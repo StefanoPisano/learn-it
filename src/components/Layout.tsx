@@ -11,7 +11,7 @@ export function Layout() {
     <div className="min-h-screen bg-[var(--color-background)] flex">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className="flex-1 lg:ml-60">
+      <main className="flex-1 lg:ml-60 overflow-x-hidden">
         <header className="h-16 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-between px-4 lg:px-6">
           <div className="flex items-center">
             <button

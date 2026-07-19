@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { Trash2 } from 'lucide-react'
 import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
 
@@ -31,7 +32,10 @@ export function LearningPathCard({
   onDelete,
 }: LearningPathCardProps) {
   return (
-    <div className="bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+    <Link
+      to={`/paths/${id}`}
+      className="block bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
+    >
       <div className="p-4">
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-semibold text-[var(--color-text)] line-clamp-1">
@@ -45,7 +49,11 @@ export function LearningPathCard({
             </span>
             {onDelete && (
               <button
-                onClick={() => onDelete(id)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  onDelete(id)
+                }}
                 className="p-1 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-[var(--color-text-secondary)] hover:text-red-500 transition-colors"
                 aria-label="Delete"
               >
@@ -87,6 +95,6 @@ export function LearningPathCard({
           />
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

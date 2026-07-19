@@ -74,5 +74,26 @@
     "questionNoCorrect": "Question \"{{question}}\" has no correct answer marked with [x]",
     "fileInvalid": "File must contain at least one global metadata block and one section",
     "quizNoQuestions": "Quiz sections must contain at least one question"
+  },
+  "viewer": {
+    "backToPaths": "Back to paths",
+    "sectionProgress": "Section {{current}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "completed": "Completed",
+    "checkAnswers": "Check answers",
+    "retry": "Retry",
+    "correct": "correct",
+    "markComplete": "Complete",
+    "reset": "Reset progress",
+    "resetConfirm": "Are you sure you want to reset all progress for this learning path?",
+    "completeAll": "Complete all",
+    "sections": "Sections",
+    "sectionType": {
+      "concept": "Concept",
+      "exercise": "Exercise",
+      "quiz": "Quiz",
+      "reference": "References"
+    }
   }
 }
