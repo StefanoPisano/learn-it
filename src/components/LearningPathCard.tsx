@@ -5,6 +5,7 @@ interface LearningPathCardProps {
   tags: string[]
   progress: number
   author: string
+  language: string
 }
 
 const difficultyColors = {
@@ -20,6 +21,7 @@ export function LearningPathCard({
   tags,
   progress,
   author,
+  language,
 }: LearningPathCardProps) {
   return (
     <div className="bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
@@ -54,7 +56,7 @@ export function LearningPathCard({
       <div className="px-4 py-3 border-t border-[var(--color-border)] bg-[var(--color-background)]/50">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-[var(--color-text-secondary)]">
-            {author}
+            {author} · {language.toUpperCase()}
           </span>
           <span className="text-xs font-medium text-[var(--color-text-secondary)]">
             {progress}%

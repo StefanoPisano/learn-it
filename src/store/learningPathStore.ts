@@ -9,6 +9,7 @@ export interface LearningPath {
   tags: string[]
   progress: number
   author: string
+  language: string
 }
 
 interface LearningPathState {
@@ -27,6 +28,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['react', 'hooks', 'frontend'],
     progress: 65,
     author: 'John Doe',
+    language: 'en',
   },
   {
     id: 2,
@@ -36,6 +38,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['typescript', 'javascript'],
     progress: 100,
     author: 'Jane Smith',
+    language: 'en',
   },
   {
     id: 3,
@@ -45,6 +48,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['css', 'frontend', 'design'],
     progress: 30,
     author: 'Mike Johnson',
+    language: 'en',
   },
   {
     id: 4,
@@ -54,6 +58,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['nodejs', 'backend', 'api'],
     progress: 0,
     author: 'Sarah Wilson',
+    language: 'en',
   },
   {
     id: 5,
@@ -63,6 +68,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['git', 'devops'],
     progress: 85,
     author: 'Alex Chen',
+    language: 'en',
   },
   {
     id: 6,
@@ -72,6 +78,7 @@ const mockLearningPaths: LearningPath[] = [
     tags: ['database', 'sql', 'backend'],
     progress: 15,
     author: 'Emily Brown',
+    language: 'en',
   },
 ]
 
