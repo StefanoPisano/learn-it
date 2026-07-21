@@ -107,6 +107,71 @@ import { Link } from 'react-router'
 
 ---
 
+## React Context (Provider / Consumer)
+
+React Context is the mechanism that allows components to access data from ancestor components without passing props through every level.
+
+### Provider and Consumer
+
+| Role | Component | What it does |
+|------|-----------|-------------|
+| **Provider** | `BrowserRouter` | Creates and provides the routing context |
+| **Consumer** | `Link`, `Outlet`, `useLocation` | Reads from the routing context |
+
+A consumer component **must** be a descendant of its provider in the React component tree.
+
+### Tree-based, not file-based
+
+Context works based on the **component tree at runtime**, not on the file system. A component in a different file still has access to the context as long as it's a descendant in the tree:
+
+```tsx
+// App.tsx
+<BrowserRouter>                          {/* Provider */}
+  <Routes>
+    <Route element={<Layout />}>
+      <Route path="/" element={<Dashboard />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
+```
+
+```tsx
+// Dashboard.tsx (different file)
+function Dashboard() {
+  return <Link to="/paths">Browse</Link>  {/* Consumer — works ✅ */}
+}
+```
+
+Why? Because at runtime, `Dashboard` is rendered **inside** `BrowserRouter`:
+
+```
+BrowserRouter (context provider)
+  └── Routes
+        └── Layout
+              └── <Outlet />
+                    └── Dashboard (different file, but descendant in tree)
+                          └── <Link> ← finds the context ✅
+```
+
+### When it breaks
+
+If a consumer is **not** a descendant of the provider, it won't find the context:
+
+```tsx
+// ❌ Link outside BrowserRouter — no context, runtime error
+<Link to="/paths">Browse</Link>
+
+<BrowserRouter>
+  <Routes>...</Routes>
+</BrowserRouter>
+```
+
+### Rule of thumb
+
+All React Router components (`Link`, `Outlet`, `useLocation`, `useNavigate`, etc.) must be descendants of `BrowserRouter` in the component tree. The file they're defined in doesn't matter — only their position at runtime.
+
+---
+
 ## useLocation
 
 A React Router hook that returns the current URL location object.
@@ -353,6 +418,130 @@ const filteredPaths = useMemo(() => {
 - Simple derivations (e.g., `const double = count * 2`)
 - Values that change every render anyway
 - Premature optimization — React is already fast for most cases
+
+---
+
+## useEffect
+
+`useEffect` is a React hook for **side effects** — operations that don't belong in the render itself.
+
+```tsx
+useEffect(() => {
+  const builtins = loadBuiltinPaths()  // heavy work
+  loadBuiltIn(builtins)                // store update
+}, [loadBuiltIn])
+```
+
+### Why not in the component body?
+
+The component body runs on **every render**. If you put side effects there:
+
+```tsx
+function App() {
+  const builtins = loadBuiltinPaths()  // ⚠️ runs every render
+  loadBuiltIn(builtins)                // ⚠️ runs every render
+}
+```
+
+This means: every state change, every re-render → re-parse markdown, re-write the store. Wasteful and potentially infinite (store update → re-render → store update → ...).
+
+### useEffect solves this
+
+| Approach | When it runs | Use case |
+|----------|-------------|----------|
+| Component body | Every render | Pure calculations for JSX |
+| `useEffect` | After render (once or on dep change) | Side effects, data loading, subscriptions |
+| Event handler | On user action | Click handlers, form submissions |
+
+---
+
+## Rules of Hooks
+
+Hooks must follow two rules enforced by React. Violating them causes runtime errors or silent bugs.
+
+### Rule 1: Only call hooks at the top level
+
+```tsx
+// ✅ Correct
+function App() {
+  const [x, setX] = useState(0)
+  if (condition) {
+    // ...
+  }
+}
+
+// ❌ Wrong — hook inside condition
+function App() {
+  if (condition) {
+    const [x, setX] = useState(0)  // React error
+  }
+}
+```
+
+**Why?** React tracks hooks by **call order** (position in an array). If a hook is conditionally called, the order changes between renders and React associates wrong state to wrong hooks.
+
+### Rule 2: Only call hooks from React functions
+
+- ✅ React components (`function App() {}`)
+- ✅ Custom hooks (`function useMyHook() {}`)
+- ❌ Regular functions, `useEffect` callbacks, event handlers
+
+```tsx
+// ❌ Wrong — hook inside useEffect
+useEffect(() => {
+  const [x, setX] = useState(0)  // React error
+}, [])
+
+// ✅ Correct — hook in component body
+function App() {
+  const [x, setX] = useState(0)  // OK
+  useEffect(() => { /* use x here */ }, [x])
+}
+```
+
+**Why?** `useEffect` runs asynchronously after render. React has already finished tracking hooks by then. A hook called inside `useEffect` would be invisible to React's tracking system.
+
+---
+
+## Selectors in Zustand
+
+When you use a Zustand store in a component, you extract parts of the state with **selectors**:
+
+```tsx
+// Extract data
+const paths = useLearningPathStore((state) => state.paths)
+
+// Extract a function
+const addPath = useLearningPathStore((state) => state.addPath)
+```
+
+### Extracting vs Calling
+
+```tsx
+// Step 1: Extract the function (runs during render)
+const loadBuiltIn = useLearningPathStore((state) => state.loadBuiltIn)
+
+// Step 2: Call it (in useEffect, event handler, etc.)
+useEffect(() => {
+  loadBuiltIn(builtins)  // ← calling the extracted function
+}, [loadBuiltIn])
+```
+
+These are the **same function** — you're just separating extraction from invocation. This is required because:
+
+1. **Rules of hooks**: `useLearningPathStore(...)` is a hook → must be called at top level
+2. **Reactivity**: Using the hook ensures the component re-renders if the store changes
+3. **Cleaner code**: Separating concerns (what to use vs when to use it)
+
+### Alternative: `getState()` (not recommended for components)
+
+```tsx
+useEffect(() => {
+  useLearningPathStore.getState().loadBuiltIn(builtins)
+}, [])
+```
+
+This works but loses reactivity — the component won't re-render when the store changes. Use selectors instead.
 
 ---
 

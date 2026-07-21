@@ -70,7 +70,7 @@ export function LearningPaths() {
 
   const handleDelete = (id: number) => {
     const path = paths.find((p) => p.id === id)
-    if (path && window.confirm(t('dashboard.deleteConfirm', { title: path.title }))) {
+    if (path && window.confirm(t('learningPathCard.deleteConfirm', { title: path.title }))) {
       removePath(id)
     }
   }

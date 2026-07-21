@@ -5,17 +5,17 @@ import { ThemeToggle } from './ThemeToggle'
 import { Menu } from 'lucide-react'
 
 export function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-[var(--color-background)] flex">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
 
       <main className="flex-1 lg:ml-60 overflow-x-hidden flex flex-col min-h-screen">
         <header className="h-16 border-b border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-between px-4 lg:px-6">
           <div className="flex items-center">
             <button
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setIsMobileSidebarOpen(true)}
               className="lg:hidden p-2 rounded-lg hover:bg-[var(--color-background)] transition-colors"
             >
               <Menu className="w-6 h-6 text-[var(--color-text)]" />

@@ -13,7 +13,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { t } = useTranslation()
 
   const navItems = [
-    { icon: Home, label: t('nav.dashboard'), path: '/' },
+    { icon: Home, label: t('nav.myCourses'), path: '/' },
     { icon: BookOpen, label: t('nav.learningPaths'), path: '/paths' },
     { icon: HelpCircle, label: t('nav.faq'), path: '/faq' }
   ]

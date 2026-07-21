@@ -1,15 +1,17 @@
 {
   "nav": {
-    "dashboard": "Meine Kurse",
+    "myCourses": "Meine Kurse",
     "learningPaths": "Lernpfade",
     "faq": "FAQ"
   },
-  "dashboard": {
+  "myCourses": {
     "title": "Meine Kurse",
     "subtitle": "Dein Lernfortschritt auf einen Blick",
     "importPath": "Importieren",
     "searchPlaceholder": "Lernpfade suchen...",
-    "emptyState": "Keine Lernpfade gefunden",
+    "emptyState": "Keine Lernpfade gefunden"
+  },
+  "learningPathCard": {
     "deleteConfirm": "Möchtest du \"{{title}}\" wirklich löschen?",
     "deleteSuccess": "Lernpfad gelöscht"
   },

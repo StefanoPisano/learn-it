@@ -1,15 +1,17 @@
 {
   "nav": {
-    "dashboard": "Mina kurser",
+    "myCourses": "Mina kurser",
     "learningPaths": "Lärstigar",
     "faq": "FAQ"
   },
-  "dashboard": {
+  "myCourses": {
     "title": "Mina kurser",
     "subtitle": "Din inlärningsprogress i överblick",
     "importPath": "Importera",
     "searchPlaceholder": "Sök lärstigar...",
-    "emptyState": "Inga lärstigar matchar din sökning",
+    "emptyState": "Inga lärstigar matchar din sökning"
+  },
+  "learningPathCard": {
     "deleteConfirm": "Är du säker på att du vill ta bort \"{{title}}\"?",
     "deleteSuccess": "Lärstig borttagen"
   },

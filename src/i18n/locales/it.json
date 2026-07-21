@@ -1,19 +1,21 @@
 {
   "nav": {
-    "dashboard": "I miei corsi",
+    "myCourses": "I miei corsi",
     "learningPaths": "Percorsi",
     "faq": "FAQ"
   },
-  "dashboard": {
+  "myCourses": {
     "title": "I miei corsi",
     "subtitle": "Il tuo progresso di apprendimento in sintesi",
     "searchPlaceholder": "Cerca corsi seguiti...",
     "emptyState": "Nessun corrisponde alla tua ricerca",
     "emptyStateFollowed": "Nessun corso seguito. Esplora i percorsi disponibili e clicca \"Segui\".",
     "browsePaths": "Sfoglia percorsi",
+    "unfollowConfirm": "Smettere di seguire \"{{title}}\"?"
+  },
+  "learningPathCard": {
     "follow": "Segui",
     "following": "Seguito",
-    "unfollowConfirm": "Smettere di seguire \"{{title}}\"?",
     "builtIn": "Piattaforma",
     "deleteConfirm": "Sei sicuro di voler eliminare \"{{title}}\"?",
     "deleteSuccess": "Percorso eliminato"

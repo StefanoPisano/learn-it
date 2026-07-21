@@ -1,15 +1,17 @@
 {
   "nav": {
-    "dashboard": "Mes cours",
+    "myCourses": "Mes cours",
     "learningPaths": "Parcours",
     "faq": "FAQ"
   },
-  "dashboard": {
+  "myCourses": {
     "title": "Mes cours",
     "subtitle": "Votre progression d'apprentissage en un coup d'œil",
     "importPath": "Importer",
     "searchPlaceholder": "Rechercher des parcours...",
-    "emptyState": "Aucun parcours ne correspond à votre recherche",
+    "emptyState": "Aucun parcours ne correspond à votre recherche"
+  },
+  "learningPathCard": {
     "deleteConfirm": "Êtes-vous sûr de vouloir supprimer « {{title}} » ?",
     "deleteSuccess": "Parcours supprimé"
   },

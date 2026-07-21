@@ -6,7 +6,7 @@ import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
 import { useLearningPathStore } from '../store/learningPathStore'
 
-export function Dashboard() {
+export function MyCourses() {
   const { t } = useTranslation()
   const paths = useLearningPathStore((state) => state.paths)
   const unfollowPath = useLearningPathStore((state) => state.unfollowPath)
@@ -27,7 +27,7 @@ export function Dashboard() {
 
   const handleUnfollow = (id: number) => {
     const path = paths.find((p) => p.id === id)
-    if (path && window.confirm(t('dashboard.unfollowConfirm', { title: path.title }))) {
+    if (path && window.confirm(t('myCourses.unfollowConfirm', { title: path.title }))) {
       unfollowPath(id)
     }
   }
@@ -37,10 +37,10 @@ export function Dashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-[var(--color-text)]">
-            {t('dashboard.title')}
+            {t('myCourses.title')}
           </h2>
           <p className="text-[var(--color-text-secondary)]">
-            {t('dashboard.subtitle')}
+            {t('myCourses.subtitle')}
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export function Dashboard() {
           to="/paths"
           className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-lg hover:bg-[var(--color-primary)]/20 transition-colors"
         >
-          {t('dashboard.browsePaths')}
+          {t('myCourses.browsePaths')}
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ export function Dashboard() {
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-text-secondary)]" />
         <input
           type="text"
-          placeholder={t('dashboard.searchPlaceholder')}
+          placeholder={t('myCourses.searchPlaceholder')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:border-[var(--color-primary)] transition-colors"
@@ -64,7 +64,7 @@ export function Dashboard() {
       </div>
 
       {filteredPaths.length === 0 ? (
-        <EmptyState message={followedPaths.length === 0 ? t('dashboard.emptyStateFollowed') : t('dashboard.emptyState')} />
+        <EmptyState message={followedPaths.length === 0 ? t('myCourses.emptyStateFollowed') : t('myCourses.emptyState')} />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredPaths.map((path) => (

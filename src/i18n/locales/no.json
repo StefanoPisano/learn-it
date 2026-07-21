@@ -1,15 +1,17 @@
 {
   "nav": {
-    "dashboard": "Mine kurs",
+    "myCourses": "Mine kurs",
     "learningPaths": "Læringsstier",
     "faq": "FAQ"
   },
-  "dashboard": {
+  "myCourses": {
     "title": "Mine kurs",
     "subtitle": "Din læringsprogresjon i et øyeblikk",
     "importPath": "Importer",
     "searchPlaceholder": "Søk læringsstier...",
-    "emptyState": "Ingen læringsstier samsvarer med søket ditt",
+    "emptyState": "Ingen læringsstier samsvarer med søket ditt"
+  },
+  "learningPathCard": {
     "deleteConfirm": "Er du sikker på at du vil slette \"{{title}}\"?",
     "deleteSuccess": "Læringsstig slettet"
   },
