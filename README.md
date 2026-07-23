@@ -72,9 +72,15 @@ It was created as part of a personal learning journey to explore and understand 
 
 All code, architecture decisions, and implementation were guided through AI conversation,
 while design choices, feature priorities, and final review were made by the human developer.
+I tried to keep good quality of project documentation by instructing AI to keep it up to date after every change. 
+I've also tracked some technical details that may help me understanding better the technologies used in the tool.
 
 ## 📚 Documentation
 
-- [Markdown Format Specification](docs/markdown-format.md) - How to create Learning Paths
-- [Design System](docs/design/style.md) - Colors, typography, spacing, and style rules
-- [Training Documentation](docs/training/README.md) - Components and concepts used in the project
+- [Documentation Home](docs/README.md) — Full documentation index
+- [Project Structure](docs/getting-started/project-structure.md) — Folder organization + React basics
+- [Markdown Format](docs/markdown-format.md) — How to create Learning Paths
+- [Design System](docs/design/style.md) — Colors, typography, spacing, and style rules
+- [Components](docs/architecture/components.md) — All UI components
+- [Store](docs/architecture/store.md) — Zustand state management
+- [Routing](docs/architecture/routing.md) — React Router setup
