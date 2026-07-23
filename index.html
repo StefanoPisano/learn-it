@@ -11,10 +11,11 @@
     <script>
       (function() {
         // GitHub Pages SPA redirect: restore path from query parameter
-        // 404.html redirects to /learn-it/?/paths → we restore /learn-it/paths
+        // 404.html redirects to /learn-it/?/paths → restore /learn-it/paths
         var path = window.location.search.slice(1);
         if (path && path.startsWith('/')) {
-          history.replaceState(null, null, path);
+          var base = window.location.pathname.split('/').slice(0, 2).join('/');
+          history.replaceState(null, null, base + path);
         }
       })();
     </script>
