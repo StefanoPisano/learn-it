@@ -125,7 +125,6 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
         tags: parsedData.tags,
         author: parsedData.author,
         language: parsedData.language,
-        progress: 0,
         link: parsedData.link,
         date: parsedData.date,
         version: parsedData.version,

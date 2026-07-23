@@ -17,6 +17,7 @@ export interface Section {
   type: 'concept' | 'exercise' | 'quiz' | 'reference'
   variant?: 'single' | 'multiple'
   content: string
+  completed: boolean
   questions?: QuizQuestion[]
   links?: ReferenceLink[]
 }
@@ -29,7 +30,6 @@ export interface LearningPath {
   description: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
   tags: string[]
-  progress: number
   followed: boolean
   author: string
   language: string
@@ -39,6 +39,11 @@ export interface LearningPath {
   sections?: Section[]
 }
 
+export function calcProgress(sections: Section[] | undefined): number {
+  if (!sections || sections.length === 0) return 0
+  return Math.round((sections.filter((s) => s.completed).length / sections.length) * 100)
+}
+
 interface LearningPathState {
   paths: LearningPath[]
   addPath: (path: Omit<LearningPath, 'id' | 'slug' | 'source' | 'followed'>) => void
@@ -46,6 +51,7 @@ interface LearningPathState {
   updatePath: (id: number, updates: Partial<LearningPath>) => void
   followPath: (id: number) => void
   unfollowPath: (id: number) => void
+  toggleSection: (pathId: number, sectionIndex: number) => void
   loadBuiltIn: (builtinPaths: BuiltinPath[]) => void
 }
 
@@ -86,7 +92,25 @@ export const useLearningPathStore = create<LearningPathState>()(
 
       unfollowPath: (id) =>
         set((state) => ({
-          paths: state.paths.map((p) => (p.id === id ? { ...p, followed: false, progress: 0 } : p)),
+          paths: state.paths.map((p) =>
+            p.id === id
+              ? { ...p, followed: false, sections: p.sections?.map((s) => ({ ...s, completed: false })) }
+              : p
+          ),
+        })),
+
+      toggleSection: (pathId, sectionIndex) =>
+        set((state) => ({
+          paths: state.paths.map((p) =>
+            p.id === pathId && p.sections
+              ? {
+                  ...p,
+                  sections: p.sections.map((s, i) =>
+                    i === sectionIndex ? { ...s, completed: !s.completed } : s
+                  ),
+                }
+              : p
+          ),
         })),
 
       loadBuiltIn: (builtinPaths) =>
@@ -107,8 +131,11 @@ export const useLearningPathStore = create<LearningPathState>()(
               id: existing?.id ?? id++,
               slug: bp.slug,
               source: 'builtin',
-              progress: existing?.progress ?? 0,
               followed: existing?.followed ?? false,
+              sections: bp.data.sections?.map((s, i) => ({
+                ...s,
+                completed: existing?.sections?.[i]?.completed ?? false,
+              })),
             })
           }
 

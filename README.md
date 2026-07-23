@@ -54,7 +54,7 @@ npm run dev
 
 ### Importing a Learning Path
 
-1. Click the **Import Learning Path** button on the Dashboard or Learning Paths page
+1. Click the **Import Learning Path** button on the My Courses or Learning Paths page
 2. Drag and drop a `.md` file or click to browse
 3. Preview the parsed content (title, description, difficulty, tags, author)
 4. Confirm the import — the path is saved locally and persists across sessions

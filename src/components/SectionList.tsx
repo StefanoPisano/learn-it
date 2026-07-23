@@ -19,12 +19,11 @@ function getSectionName(content: string, type: Section['type']): string {
 
 interface SectionListProps {
   sections: Section[]
-  completedSections: Set<number>
   currentIndex: number
   onNavigate: (index: number) => void
 }
 
-export function SectionList({ sections, completedSections, currentIndex, onNavigate }: SectionListProps) {
+export function SectionList({ sections, currentIndex, onNavigate }: SectionListProps) {
   const { t } = useTranslation()
 
   return (
@@ -35,7 +34,7 @@ export function SectionList({ sections, completedSections, currentIndex, onNavig
       {sections.map((section, index) => {
         const Icon = sectionIcons[section.type]
         const isCurrent = index === currentIndex
-        const isCompleted = completedSections.has(index)
+        const isCompleted = section.completed
 
         return (
           <button

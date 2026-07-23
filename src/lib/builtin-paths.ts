@@ -128,7 +128,7 @@ function parseMarkdown(markdown: string) {
     const type = extractValue(sectionYaml, 'type')
     if (!type || !['concept', 'exercise', 'quiz', 'reference'].includes(type)) continue
     const meta = parseSectionMetadata(sectionYaml)
-    const section: Section = { type: meta.type as Section['type'], content: sectionBody }
+    const section: Section = { type: meta.type as Section['type'], content: sectionBody, completed: false }
     if (meta.type === 'quiz' && meta.variant) {
       section.variant = meta.variant as 'single' | 'multiple'
       section.questions = parseQuizQuestions(sectionBody)

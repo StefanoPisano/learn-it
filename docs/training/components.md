@@ -79,19 +79,27 @@ Active link is highlighted with the primary color.
 
 **File**: `src/components/LearningPathCard.tsx`
 
-Card component that displays a learning path summary with title, difficulty badge, tags, author, and progress bar.
+Card component that displays a learning path summary with title, difficulty badge, tags, author, and progress bar. Progress is calculated automatically from `sections` using `calcProgress()`.
 
 ### Props
 
 | Prop | Type | Description |
 |------|------|-------------|
+| `id` | `number` | Learning path ID |
+| `slug` | `string` | URL-friendly slug |
+| `source` | `'builtin' \| 'imported'` | Path origin |
 | `title` | `string` | Learning path title |
 | `description` | `string` | Short description (max 2 lines) |
 | `difficulty` | `'beginner' \| 'intermediate' \| 'advanced'` | Difficulty level |
 | `tags` | `string[]` | List of tags |
-| `progress` | `number` | Completion percentage (0-100) |
+| `sections?` | `Section[]` | Sections (used to calculate progress) |
+| `followed` | `boolean` | Whether the user is following this path |
 | `author` | `string` | Author name |
-| `link?` | `string` | Optional external URL |
+| `language` | `string` | Content language |
+| `version?` | `string` | Semantic version |
+| `onDelete?` | `(id: number) => void` | Callback to delete (imported only) |
+| `onFollow?` | `(id: number) => void` | Callback to follow |
+| `onUnfollow?` | `(id: number) => void` | Callback to unfollow |
 
 ### Visual Sections
 
@@ -202,14 +210,13 @@ Displayed when a list has no items to show (e.g., no search results).
 
 **File**: `src/components/SectionList.tsx`
 
-Vertical navigation list showing all sections of a learning path with type-specific icons, current section highlighting, and completed/incomplete styling.
+Vertical navigation list showing all sections of a learning path with type-specific icons, current section highlighting, and completed/incomplete styling. Completion status is read directly from `section.completed`.
 
 ### Props
 
 | Prop | Type | Description |
 |------|------|-------------|
 | `sections` | `Section[]` | List of sections to display |
-| `completedSections` | `Set<number>` | Set of completed section indices |
 | `currentIndex` | `number` | Index of the currently active section |
 | `onNavigate` | `(index: number) => void` | Callback when a section is clicked |
 
@@ -239,11 +246,11 @@ Section name is extracted from the first `##` heading in the content. Falls back
 
 ---
 
-## Dashboard
+## MyCourses
 
-**File**: `src/pages/Dashboard.tsx`
+**File**: `src/pages/MyCourses.tsx`
 
-Home page that displays a grid of `LearningPathCard` components with a search bar and an import button.
+Home page that displays a grid of followed `LearningPathCard` components with a search bar and an import button.
 
 ### Data Source
 

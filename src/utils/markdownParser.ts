@@ -17,6 +17,7 @@ export interface ParsedSection {
   type: 'concept' | 'exercise' | 'quiz' | 'reference'
   variant?: 'single' | 'multiple'
   content: string
+  completed: boolean
   questions?: ParsedQuizQuestion[]
   links?: ParsedReferenceLink[]
 }
@@ -255,6 +256,7 @@ export function parseMarkdown(markdown: string): ParsedLearningPath {
       type: meta.type as ParsedSection['type'],
       variant: meta.type === 'quiz' ? (meta.variant as 'single' | 'multiple') : undefined,
       content: sectionBody,
+      completed: false,
     }
 
     if (meta.type === 'quiz') {

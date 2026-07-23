@@ -37,7 +37,7 @@ React Router supports nesting routes inside other routes. A **parent route witho
 
 ```tsx
 <Route element={<Layout />}>          {/* Parent: no path → matches all */}
-  <Route path="/" element={<Dashboard />} />     {/* Child */}
+  <Route path="/" element={<MyCourses />} />     {/* Child */}
   <Route path="/paths" element={<Paths />} />    {/* Child */}
 </Route>
 ```
@@ -129,27 +129,27 @@ Context works based on the **component tree at runtime**, not on the file system
 <BrowserRouter>                          {/* Provider */}
   <Routes>
     <Route element={<Layout />}>
-      <Route path="/" element={<Dashboard />} />
+<Route path="/" element={<MyCourses />} />
     </Route>
   </Routes>
 </BrowserRouter>
 ```
 
 ```tsx
-// Dashboard.tsx (different file)
-function Dashboard() {
+// MyCourses.tsx (different file)
+function MyCourses() {
   return <Link to="/paths">Browse</Link>  {/* Consumer — works ✅ */}
 }
 ```
 
-Why? Because at runtime, `Dashboard` is rendered **inside** `BrowserRouter`:
+Why? Because at runtime, `MyCourses` is rendered **inside** `BrowserRouter`:
 
 ```
 BrowserRouter (context provider)
   └── Routes
         └── Layout
               └── <Outlet />
-                    └── Dashboard (different file, but descendant in tree)
+                    └── MyCourses (different file, but descendant in tree)
                           └── <Link> ← finds the context ✅
 ```
 
@@ -186,6 +186,86 @@ function Sidebar() {
 ```
 
 Commonly used to highlight the active navigation link by comparing `location.pathname` with each link's `path`.
+
+---
+
+## useParams
+
+A React Router hook that extracts dynamic parameters from the URL.
+
+```tsx
+import { useParams } from 'react-router'
+
+// Route: <Route path="/paths/:id" element={<LearningPathView />} />
+// URL:   /learn-it/paths/42
+
+function LearningPathView() {
+  const { id } = useParams<{ id: string }>()
+  // id → "42"
+}
+```
+
+### How it works
+
+The `:id` in the route definition (`/paths/:id`) is a **dynamic segment**. Whatever value appears in the URL at that position becomes a parameter.
+
+| URL | Route | Params |
+|-----|-------|--------|
+| `/paths/42` | `/paths/:id` | `{ id: "42" }` |
+| `/paths/react-hooks` | `/paths/:id` | `{ id: "react-hooks" }` |
+| `/paths/` | `/paths/:id` | No match (required param missing) |
+
+### Generic type
+
+```tsx
+const { id } = useParams<{ id: string }>()
+```
+
+The `<{ id: string }>` is a **TypeScript generic** — it tells TypeScript the parameter name and type. Without it, `id` would be `string | undefined` and you'd need a null check before using it.
+
+### Multiple params
+
+```tsx
+// Route: <Route path="/courses/:courseId/sections/:sectionId" />
+const { courseId, sectionId } = useParams<{ courseId: string; sectionId: string }>()
+```
+
+---
+
+## useNavigate
+
+A React Router hook that allows **programmatic navigation** — changing the URL without a `<Link>`.
+
+```tsx
+import { useNavigate } from 'react-router'
+
+function MyComponent() {
+  const navigate = useNavigate()
+
+  navigate('/paths')           // go to a route
+  navigate(-1)                 // go back
+  navigate(1)                  // go forward
+  navigate('/paths', { replace: true })  // replace history (no back)
+}
+```
+
+### When to use it
+
+- **After an action** — e.g., after deleting a path, navigate to the list
+- **Conditional redirect** — if user is not logged in, navigate to login
+- **Back button** — `navigate(-1)` is equivalent to the browser back button
+
+### Example in this project
+
+In `LearningPathView.tsx`:
+
+```tsx
+useEffect(() => {
+  if (path && !path.followed) navigate('/paths', { replace: true })
+}, [path, navigate])
+```
+
+If the user tries to open a path they don't follow, they're redirected to the paths list. `replace: true` prevents the user from navigating back to that URL.
 
 ---
 
@@ -293,16 +373,27 @@ How it works:
 
 **File**: `src/store/learningPathStore.ts`
 
-Stores all learning paths with CRUD operations. Used by both Dashboard and LearningPaths pages.
+Stores all learning paths with CRUD operations and section completion tracking. Used by both MyCourses and LearningPaths pages.
 
 ```tsx
+export interface Section {
+  type: 'concept' | 'exercise' | 'quiz' | 'reference'
+  variant?: 'single' | 'multiple'
+  content: string
+  completed: boolean
+  questions?: QuizQuestion[]
+  links?: ReferenceLink[]
+}
+
 export interface LearningPath {
   id: number
+  slug: string
+  source: 'builtin' | 'imported'
   title: string
   description: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
   tags: string[]
-  progress: number
+  followed: boolean
   author: string
   language: string
   link?: string
@@ -311,30 +402,16 @@ export interface LearningPath {
   sections?: Section[]
 }
 
-export const useLearningPathStore = create<LearningPathState>()(
-  persist(
-    (set) => ({
-      paths: [],
-
-      addPath: (path) => set((state) => ({
-        paths: [...state.paths, { ...path, id: nextId }],
-      })),
-
-      removePath: (id) => set((state) => ({
-        paths: state.paths.filter((p) => p.id !== id),
-      })),
-
-      updatePath: (id, updates) => set((state) => ({
-        paths: state.paths.map((p) => p.id === id ? { ...p, ...updates } : p),
-      })),
-    }),
-    {
-      name: 'learn-it-paths',
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
-)
+export function calcProgress(sections: Section[] | undefined): number {
+  if (!sections || sections.length === 0) return 0
+  return Math.round((sections.filter((s) => s.completed).length / sections.length) * 100)
+}
 ```
+
+Key points:
+- `progress` is no longer stored — it's calculated via `calcProgress()` from `sections[].completed`
+- `completed` lives on each `Section`, not on `LearningPath`
+- `toggleSection(pathId, sectionIndex)` flips a section's `completed` state
 
 How each action works:
 
@@ -343,6 +420,9 @@ How each action works:
 | `addPath(path)` | `{ paths: [...state.paths, newPath] }` | Appends to array |
 | `removePath(id)` | `{ paths: state.paths.filter(...) }` | Removes from array |
 | `updatePath(id, updates)` | `{ paths: state.paths.map(...) }` | Updates one item |
+| `followPath(id)` | `{ paths: state.paths.map(...) }` | Sets `followed: true` |
+| `unfollowPath(id)` | `{ paths: state.paths.map(...) }` | Sets `followed: false`, resets all sections |
+| `toggleSection(pathId, idx)` | `{ paths: state.paths.map(...) }` | Flips `section.completed` |
 
 ---
 
@@ -452,6 +532,72 @@ This means: every state change, every re-render → re-parse markdown, re-write 
 | Component body | Every render | Pure calculations for JSX |
 | `useEffect` | After render (once or on dep change) | Side effects, data loading, subscriptions |
 | Event handler | On user action | Click handlers, form submissions |
+
+### Why not just an `if` in the body?
+
+A common question: "Why use `useEffect` instead of just an `if` statement?"
+
+```tsx
+// ❌ Wrong — infinite loop
+function LearningPathView() {
+  if (path && !path.followed) navigate('/paths')
+}
+
+// ✅ Correct — runs after render, only when dependencies change
+useEffect(() => {
+  if (path && !path.followed) navigate('/paths')
+}, [path, navigate])
+```
+
+**The problem with `if` in the body:**
+
+```
+Render 1:
+  → Component body runs
+  → if condition is true → navigate('/paths')  ← changes URL
+  → URL change = new render!
+
+Render 2:
+  → Component body runs again
+  → if condition is still true → navigate('/paths')  ← changes URL again
+  → URL change = another render!
+
+Render 3: ... → infinite loop
+```
+
+**With `useEffect`:**
+
+```
+Render 1:
+  → Component body runs (no navigate)
+  → Render finishes
+  → After render: useEffect checks dependencies
+  → path changed? Yes → runs navigate
+  → URL change = new render
+
+Render 2:
+  → Component body runs (no navigate)
+  → Render finishes
+  → After render: useEffect checks dependencies
+  → path changed? No → does NOT run navigate
+  → Done! No loop
+```
+
+The key difference is **when** the code runs:
+- **Body** → runs **during** render → every navigate triggers another render → loop
+- **`useEffect`** → runs **after** render → only when dependencies change → no loop
+
+### Practical example: navigation guard
+
+In `LearningPathView.tsx`:
+
+```tsx
+useEffect(() => {
+  if (path && !path.followed) navigate('/paths', { replace: true })
+}, [path, navigate])
+```
+
+This protects the page: if the user opens a learning path they don't follow, they're redirected to the paths list. `replace: true` prevents them from navigating back to that URL.
 
 ---
 

@@ -2,6 +2,9 @@ import { Link } from 'react-router'
 import { Trash2, Plus, Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
+import { difficultyColors } from '../utils/difficultyColors'
+import { calcProgress } from '../store/learningPathStore'
+import type { Section } from '../store/learningPathStore'
 
 interface LearningPathCardProps {
   id: number
@@ -11,7 +14,7 @@ interface LearningPathCardProps {
   description: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
   tags: string[]
-  progress: number
+  sections?: Section[]
   followed: boolean
   author: string
   language: string
@@ -21,12 +24,6 @@ interface LearningPathCardProps {
   onUnfollow?: (id: number) => void
 }
 
-const difficultyColors = {
-  beginner: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  intermediate: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  advanced: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-}
-
 export function LearningPathCard({
   id,
   source,
@@ -34,7 +31,7 @@ export function LearningPathCard({
   description,
   difficulty,
   tags,
-  progress,
+  sections,
   followed,
   author,
   language,
@@ -42,10 +39,11 @@ export function LearningPathCard({
   onDelete,
   onFollow,
   onUnfollow,
-}: LearningPathCardProps) {
+}: Readonly<LearningPathCardProps>) {
   const { t } = useTranslation()
   const isBuiltin = source === 'builtin'
   const canDelete = !isBuiltin && onDelete
+  const progress = calcProgress(sections)
 
   const rootClassName = followed
     ? 'block bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden'

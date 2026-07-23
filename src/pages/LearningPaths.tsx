@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { LearningPathCard } from '../components/LearningPathCard'
 import { EmptyState } from '../components/EmptyState'
 import { ImportModal } from '../components/ImportModal'
-import { useLearningPathStore } from '../store/learningPathStore'
+import { useLearningPathStore, calcProgress } from '../store/learningPathStore'
 
 type Difficulty = 'beginner' | 'intermediate' | 'advanced'
 type SortBy = 'title' | 'progress' | 'difficulty'
@@ -55,7 +55,7 @@ export function LearningPaths() {
 
     result = [...result].sort((a, b) => {
       if (sortBy === 'title') return a.title.localeCompare(b.title)
-      if (sortBy === 'progress') return b.progress - a.progress
+      if (sortBy === 'progress') return calcProgress(b.sections) - calcProgress(a.sections)
       if (sortBy === 'difficulty') {
         const order = { beginner: 0, intermediate: 1, advanced: 2 }
         return order[a.difficulty] - order[b.difficulty]

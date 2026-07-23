@@ -1,31 +1,19 @@
-import { useState, useCallback, useRef, useMemo, useEffect } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router'
 import { ChevronLeft, ChevronRight, ArrowLeft, RotateCcw, CheckCheck, List } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { useLearningPathStore } from '../store/learningPathStore'
+import { useLearningPathStore, calcProgress } from '../store/learningPathStore'
 import { SectionRenderer } from '../components/SectionRenderer'
 import { SectionList } from '../components/SectionList'
 import { getLanguageDisplay, getLanguageName } from '../utils/languageFlags'
-
-const difficultyColors = {
-  beginner: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  intermediate: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  advanced: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-}
-
-function getInitialCompleted(progress: number, total: number): Set<number> {
-  const completed = new Set<number>()
-  const estimated = Math.round((progress / 100) * total)
-  for (let i = 0; i < estimated; i++) completed.add(i)
-  return completed
-}
+import { difficultyColors } from '../utils/difficultyColors'
 
 export function LearningPathView() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const path = useLearningPathStore((state) => state.paths.find((p) => p.id === Number(id)))
-  const updatePath = useLearningPathStore((state) => state.updatePath)
+  const toggleSection = useLearningPathStore((state) => state.toggleSection)
 
   useEffect(() => {
     if (path && !path.followed) navigate('/paths', { replace: true })
@@ -34,69 +22,53 @@ export function LearningPathView() {
   const sections = useMemo(() => path?.sections ?? [], [path?.sections])
   const totalSections = sections.length
 
-  const [completedSections, setCompletedSections] = useState<Set<number>>(
-    () => path ? getInitialCompleted(path.progress, totalSections) : new Set(),
-  )
   const [quizPassed, setQuizPassed] = useState(false)
   const [sectionListOpen, setSectionListOpen] = useState(false)
-  const lastWrittenProgress = useRef(path?.progress ?? 0)
 
   const [currentIndex, setCurrentIndex] = useState(() => {
-    if (!path) return 0
-    const completed = getInitialCompleted(path.progress, totalSections)
-    for (let i = 0; i < totalSections; i++) {
-      if (!completed.has(i)) return i
+    if (!path?.sections) return 0
+    for (let i = 0; i < path.sections.length; i++) {
+      if (!path.sections[i].completed) return i
     }
     return 0
   })
 
   const currentSection = sections[currentIndex]
   const isQuiz = currentSection?.type === 'quiz'
-  const canComplete = isQuiz ? quizPassed : !completedSections.has(currentIndex)
+  const canComplete = isQuiz ? quizPassed : !currentSection?.completed
 
   const handleMarkComplete = useCallback(() => {
-    setCompletedSections((prev) => {
-      const next = new Set(prev)
-      next.add(currentIndex)
-      return next
-    })
+    if (!path) return
+    toggleSection(path.id, currentIndex)
     setQuizPassed(false)
     if (currentIndex < totalSections - 1) {
       setCurrentIndex((i) => i + 1)
     }
-  }, [currentIndex, totalSections])
+  }, [path, currentIndex, totalSections, toggleSection])
 
   const handleReset = useCallback(() => {
-    if (!path) return
+    if (!path || !path.sections) return
     if (window.confirm(t('viewer.resetConfirm'))) {
-      setCompletedSections(new Set())
+      path.sections.forEach((_, i) => {
+        if (sections[i].completed) toggleSection(path.id, i)
+      })
       setCurrentIndex(0)
       setQuizPassed(false)
-      lastWrittenProgress.current = 0
-      updatePath(path.id, { progress: 0 })
     }
-  }, [path, t, updatePath])
+  }, [path, sections, t, toggleSection])
 
   const handleCompleteAll = useCallback(() => {
-    if (!path) return
-    const all = new Set<number>(sections.map((_, i) => i))
-    setCompletedSections(all)
-    lastWrittenProgress.current = 100
-    updatePath(path.id, { progress: 100 })
-  }, [path, sections, updatePath])
+    if (!path || !path.sections) return
+    path.sections.forEach((s, i) => {
+      if (!s.completed) toggleSection(path.id, i)
+    })
+  }, [path, toggleSection])
 
   const handleQuizPass = useCallback(() => {
     setQuizPassed(true)
   }, [])
 
-  const progress = totalSections > 0
-    ? Math.round((completedSections.size / totalSections) * 100)
-    : 0
-
-  if (progress !== lastWrittenProgress.current && path) {
-    lastWrittenProgress.current = progress
-    updatePath(path.id, { progress })
-  }
+  const progress = calcProgress(sections)
 
   if (!path || !path.followed) {
     return (
@@ -162,7 +134,6 @@ export function LearningPathView() {
               </div>
               <SectionList
                 sections={sections}
-                completedSections={completedSections}
                 currentIndex={currentIndex}
                 onNavigate={(i) => { setCurrentIndex(i); setQuizPassed(false); setSectionListOpen(false) }}
               />
@@ -174,7 +145,6 @@ export function LearningPathView() {
           <div className="bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] p-3">
             <SectionList
               sections={sections}
-              completedSections={completedSections}
               currentIndex={currentIndex}
               onNavigate={(i) => { setCurrentIndex(i); setQuizPassed(false) }}
             />
