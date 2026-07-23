@@ -10,6 +10,16 @@
     <title>Learn It</title>
     <script>
       (function() {
+        // GitHub Pages SPA redirect: restore path from query parameter
+        // 404.html redirects to /learn-it/?/paths → we restore /learn-it/paths
+        var path = window.location.search.slice(1);
+        if (path && path.startsWith('/')) {
+          history.replaceState(null, null, path);
+        }
+      })();
+    </script>
+    <script>
+      (function() {
         try {
           const stored = JSON.parse(localStorage.getItem('learn-it-theme'));
           const theme = stored && stored.state && stored.state.theme;
